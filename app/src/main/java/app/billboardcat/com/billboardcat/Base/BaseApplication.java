@@ -9,6 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.billboardcat.com.billboardcat.Util.Foreground;
+
 /**
  * Created by luosonglin on 7/10/18.
  */
@@ -40,6 +42,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         Log.d(TAG, "BillboardCat Application is running~~~~~~~hahaha~~~~!");
         super.onCreate();
+
+        Foreground.init(this);
         context = getApplicationContext();
         instance = this;
 
