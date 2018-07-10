@@ -15,7 +15,6 @@ import app.billboardcat.com.billboardcat.R;
 
 public class TimeUtil {
 
-
     private TimeUtil(){}
 
     public static String times() {
