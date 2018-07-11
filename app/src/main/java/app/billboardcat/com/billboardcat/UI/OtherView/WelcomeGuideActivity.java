@@ -17,6 +17,7 @@ import java.util.List;
 
 import app.billboardcat.com.billboardcat.Constant.Constant;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.UI.SignView.LoginActivity;
 import app.billboardcat.com.billboardcat.Util.SharedPreferenceUtils;
 
 /**
@@ -152,8 +153,8 @@ public class WelcomeGuideActivity extends Activity implements View.OnClickListen
 
 
     private void enterMainActivity() {
-//        Intent intent = new Intent(WelcomeGuideActivity.this, LoginActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(WelcomeGuideActivity.this, LoginActivity.class);
+        startActivity(intent);
         SharedPreferenceUtils.putBoolean(WelcomeGuideActivity.this, Constant.FIRST_OPEN, true);
         finish();
     }
