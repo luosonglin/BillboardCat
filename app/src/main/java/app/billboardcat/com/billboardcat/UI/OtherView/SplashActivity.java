@@ -37,12 +37,12 @@ public class SplashActivity extends AppCompatActivity {
         // 判断是否是第一次开启应用
         boolean isFirstOpen = SharedPreferenceUtils.getBoolean(this, Constant.FIRST_OPEN);
         // 如果是第一次启动，则先进入功能引导页
-        if (!isFirstOpen) {
-            Intent intent = new Intent(this, WelcomeGuideActivity.class);
-            startActivity(intent);
-            finish();
-            return;
-        }
+//        if (!isFirstOpen) {
+//            Intent intent = new Intent(this, WelcomeGuideActivity.class);
+//            startActivity(intent);
+//            finish();
+//            return;
+//        }
 
 
         // 如果不是第一次启动app，则正常显示启动屏

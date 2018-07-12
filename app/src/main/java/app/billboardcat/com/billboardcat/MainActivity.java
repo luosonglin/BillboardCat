@@ -15,6 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import app.billboardcat.com.billboardcat.UI.IndexView.IndexFragment;
+import app.billboardcat.com.billboardcat.UI.IndexView.MeFragment;
+import app.billboardcat.com.billboardcat.UI.IndexView.MediaFragment;
+import app.billboardcat.com.billboardcat.UI.IndexView.NewsFragment;
 import app.billboardcat.com.billboardcat.UI.SendView.SendMediaActivity;
 import app.billboardcat.com.billboardcat.UI.SendView.SendRequireActivity;
 import app.billboardcat.com.billboardcat.Widget.popmenu.PopMenu;
@@ -25,7 +28,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
-        implements IndexFragment.OnFragmentInteractionListener {
+        implements IndexFragment.OnFragmentInteractionListener,
+        MediaFragment.OnFragmentInteractionListener,
+        NewsFragment.OnFragmentInteractionListener,
+        MeFragment.OnFragmentInteractionListener{
 
     @Bind(R.id.container)
     FrameLayout container;
@@ -75,6 +81,9 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager mFragmentManager;
     private IndexFragment mIndexFragment;
+    private MediaFragment mMediaFragment;
+    private NewsFragment mNewsFragment;
+    private MeFragment mMeFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,9 +97,9 @@ public class MainActivity extends AppCompatActivity
         mFragmentManager = getSupportFragmentManager();
         if (savedInstanceState != null) {
             mIndexFragment = (IndexFragment) mFragmentManager.findFragmentByTag(TAB_INDEX_TAG);
-            mIndexFragment = (IndexFragment) mFragmentManager.findFragmentByTag(TAB_RECOMMEND_TAG);
-            mIndexFragment = (IndexFragment) mFragmentManager.findFragmentByTag(TAB_ROOM_TAG);
-            mIndexFragment = (IndexFragment) mFragmentManager.findFragmentByTag(TAB_MINE_TAG);
+            mMediaFragment = (MediaFragment) mFragmentManager.findFragmentByTag(TAB_RECOMMEND_TAG);
+            mNewsFragment = (NewsFragment) mFragmentManager.findFragmentByTag(TAB_ROOM_TAG);
+            mMeFragment = (MeFragment) mFragmentManager.findFragmentByTag(TAB_MINE_TAG);
         }
         setTabSelection(tabIndex);
 
@@ -157,11 +166,11 @@ public class MainActivity extends AppCompatActivity
 
                 tabRecommendImg.setImageResource(R.mipmap.tab2_b);
                 tabRecommendTitle.setTextColor(activeColorRecourse);
-                if (mIndexFragment == null) {
-                    mIndexFragment = new IndexFragment();
-                    fragmentTransaction.add(R.id.container, mIndexFragment, TAB_RECOMMEND_TAG);
+                if (mMediaFragment == null) {
+                    mMediaFragment = new MediaFragment();
+                    fragmentTransaction.add(R.id.container, mMediaFragment, TAB_RECOMMEND_TAG);
                 } else {
-                    fragmentTransaction.show(mIndexFragment);
+                    fragmentTransaction.show(mMediaFragment);
                 }
                 break;
 
@@ -176,11 +185,11 @@ public class MainActivity extends AppCompatActivity
 
                 tabRoomImg.setImageResource(R.mipmap.tab4_b);
                 tabRoomTitle.setTextColor(activeColorRecourse);
-                if (mIndexFragment == null) {
-                    mIndexFragment = new IndexFragment();
-                    fragmentTransaction.add(R.id.container, mIndexFragment, TAB_ROOM_TAG);
+                if (mNewsFragment == null) {
+                    mNewsFragment = new NewsFragment();
+                    fragmentTransaction.add(R.id.container, mNewsFragment, TAB_ROOM_TAG);
                 } else {
-                    fragmentTransaction.show(mIndexFragment);
+                    fragmentTransaction.show(mNewsFragment);
                 }
                 break;
 
@@ -189,11 +198,11 @@ public class MainActivity extends AppCompatActivity
 
                 tabMineImg.setImageResource(R.mipmap.tab5_b);
                 tabMineTitle.setTextColor(activeColorRecourse);
-                if (mIndexFragment == null) {
-                    mIndexFragment = new IndexFragment();
-                    fragmentTransaction.add(R.id.container, mIndexFragment, TAB_MINE_TAG);
+                if (mMeFragment == null) {
+                    mMeFragment = new MeFragment();
+                    fragmentTransaction.add(R.id.container, mMeFragment, TAB_MINE_TAG);
                 } else {
-                    fragmentTransaction.show(mIndexFragment);
+                    fragmentTransaction.show(mMeFragment);
                 }
                 break;
         }
@@ -280,13 +289,13 @@ public class MainActivity extends AppCompatActivity
             transaction.hide(mIndexFragment);
         }
         if (mIndexFragment != null) {
-            transaction.hide(mIndexFragment);
+            transaction.hide(mMediaFragment);
         }
         if (mIndexFragment != null) {
-            transaction.hide(mIndexFragment);
+            transaction.hide(mNewsFragment);
         }
         if (mIndexFragment != null) {
-            transaction.hide(mIndexFragment);
+            transaction.hide(mMeFragment);
         }
     }
 
