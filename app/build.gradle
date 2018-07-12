@@ -29,9 +29,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
-
-
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:25.3.1'
@@ -49,7 +46,9 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.github.VictorAlbertos.RxCache:core:1.4.6'
+
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.facebook.rebound:rebound:0.3.8'
+    compile 'com.youth.banner:banner:1.4.4'
     testCompile 'junit:junit:4.12'
 }
