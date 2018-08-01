@@ -288,13 +288,13 @@ public class MainActivity extends AppCompatActivity
         if (mIndexFragment != null) {
             transaction.hide(mIndexFragment);
         }
-        if (mIndexFragment != null) {
+        if (mMediaFragment != null) {
             transaction.hide(mMediaFragment);
         }
-        if (mIndexFragment != null) {
+        if (mNewsFragment != null) {
             transaction.hide(mNewsFragment);
         }
-        if (mIndexFragment != null) {
+        if (mMeFragment != null) {
             transaction.hide(mMeFragment);
         }
     }

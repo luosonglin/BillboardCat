@@ -3,12 +3,27 @@ package app.billboardcat.com.billboardcat.UI.IndexView;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.TokenWatcher;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.youth.banner.BannerConfig;
+import com.youth.banner.Transformer;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import app.billboardcat.com.billboardcat.Network.Entity.Banner;
+import app.billboardcat.com.billboardcat.Network.HttpData.HttpData;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.Util.GlideImageLoader;
+import app.billboardcat.com.billboardcat.Util.ToastUtils;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +44,9 @@ public class IndexFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private com.youth.banner.Banner mBanner;
+    private List<String> bannerImages = new ArrayList<>();
 
     public IndexFragment() {
         // Required empty public constructor
@@ -65,7 +83,50 @@ public class IndexFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_index, container, false);
+        View view = inflater.inflate(R.layout.fragment_index, container, false);
+        mBanner = (com.youth.banner.Banner) view.findViewById(R.id.banner);
+
+        getData();
+
+        return view;
+    }
+
+    private void getData() {
+        HttpData.getInstance().HttpDataGetBanner(new Observer<Banner>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(Banner banner) {
+                bannerImages.clear();
+                bannerImages.add(banner.getImg1());
+                bannerImages.add(banner.getImg2());
+                bannerImages.add(banner.getImg3());
+                bannerImages.add(banner.getImg4());
+                Log.e(getActivity().getLocalClassName()+" hhh ", banner.getImg1() + " "+bannerImages.size());
+                mBanner.setImages(bannerImages)
+                        .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
+                        .setBannerAnimation(Transformer.Default)
+                        .setImageLoader(new GlideImageLoader())
+                        .start();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                ToastUtils.show(getActivity(), e.getMessage());
+                Log.e(getActivity().getLocalClassName(), "onError: " + e.getMessage()
+                        + "\n" + e.getCause()
+                        + "\n" + e.getLocalizedMessage()
+                        + "\n" + Arrays.toString(e.getStackTrace()));
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

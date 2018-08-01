@@ -3,6 +3,7 @@ package app.billboardcat.com.billboardcat.Network.API;
 import java.util.List;
 import java.util.Map;
 
+import app.billboardcat.com.billboardcat.Network.Entity.Banner;
 import app.billboardcat.com.billboardcat.Network.Entity.LoginResponseBean;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
@@ -28,4 +29,7 @@ public interface APIService {
     @POST("/app/public/loginin")
     Observable<LoginResponseBean> sendMsgCaptcha(@QueryMap Map<String, Object> map);
 
+    //Banner
+    @GET("/BillboardCat_backend/v1/banner")
+    Observable<Banner> getBanner();
 }

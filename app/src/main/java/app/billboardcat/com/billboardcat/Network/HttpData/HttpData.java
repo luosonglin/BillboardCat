@@ -8,6 +8,7 @@ import java.util.Map;
 
 import app.billboardcat.com.billboardcat.Network.API.APIService;
 import app.billboardcat.com.billboardcat.Network.API.CacheProviders;
+import app.billboardcat.com.billboardcat.Network.Entity.Banner;
 import app.billboardcat.com.billboardcat.Network.Entity.HttpResult;
 import app.billboardcat.com.billboardcat.Network.Retrofit.ApiException;
 import app.billboardcat.com.billboardcat.Network.Retrofit.RetrofitUtils;
@@ -63,6 +64,11 @@ public class HttpData extends RetrofitUtils {
 //        Observable observableCahce=providers.getBookList(observable,new DynamicKey("书籍列表"+pageIndex+type),new EvictDynamicKey(false)).map(new HttpResultFuncCcche<List<BookListDto>>());
 //        setSubscribe(observableCahce,observer);
 //    }
+
+    public void HttpDataGetBanner(Observer<Banner> observer) {
+        Observable observable = service.getBanner();
+        setSubscribe(observable, observer);
+    }
 
     /**
      * 插入观察者
