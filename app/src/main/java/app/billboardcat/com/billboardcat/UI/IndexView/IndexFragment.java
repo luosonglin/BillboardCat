@@ -3,7 +3,6 @@ package app.billboardcat.com.billboardcat.UI.IndexView;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.TokenWatcher;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +23,7 @@ import app.billboardcat.com.billboardcat.Network.Entity.Banner;
 import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.Network.HttpData.HttpData;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.UI.Adapter.LatestRecommendationAdapter;
 import app.billboardcat.com.billboardcat.UI.Adapter.SelectedMediaAdapter;
 import app.billboardcat.com.billboardcat.Util.GlideImageLoader;
 import app.billboardcat.com.billboardcat.Util.ToastUtils;
@@ -56,6 +56,7 @@ public class IndexFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView mRecyclerView2;
     private SelectedMediaAdapter mSelectedMediaAdapter;
+    private LatestRecommendationAdapter mLatestRecommendationAdapter;
 
 
     public IndexFragment() {
@@ -114,9 +115,47 @@ public class IndexFragment extends Fragment {
         getSelectedMediaData();
 
         mRecyclerView2 = (RecyclerView) view.findViewById(R.id.rv_list2);
-
+        //设置布局管理器
+        mRecyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //如果Item高度固定  增加该属性能够提高效率
+        mRecyclerView2.setHasFixedSize(true);
+        //禁止RecyclerView的嵌套滑动特性
+        mRecyclerView2.setNestedScrollingEnabled(false);
+        // Constant data
+        mLatestRecommendationAdapter = new LatestRecommendationAdapter(R.layout.item_latest_media, null);
+        //设置加载动画
+        mLatestRecommendationAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_CUSTOM);
+        //设置是否自动加载以及加载个数
+        mLatestRecommendationAdapter.openLoadMore(6, true);
+        //将适配器添加到RecyclerView
+        mRecyclerView2.setAdapter(mLatestRecommendationAdapter);
+        getIndexMediaData();
 
         return view;
+    }
+
+    private void getIndexMediaData() {
+        HttpData.getInstance().HttpDataGetIndexMedias(new Observer<List<Media>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Media> media) {
+                mLatestRecommendationAdapter.addData(media);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     private void getSelectedMediaData() {

@@ -36,4 +36,7 @@ public interface APIService {
 
     @GET("/BillboardCat_backend/v1/media/selected")
     Observable<List<Media>> getSelectedMedias();
+
+    @GET("/BillboardCat_backend/v1/media/index")
+    Observable<List<Media>> getIndexMedias();
 }
