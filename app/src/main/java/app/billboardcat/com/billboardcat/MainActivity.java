@@ -18,11 +18,6 @@ import app.billboardcat.com.billboardcat.UI.IndexView.IndexFragment;
 import app.billboardcat.com.billboardcat.UI.IndexView.MeFragment;
 import app.billboardcat.com.billboardcat.UI.IndexView.MediaFragment;
 import app.billboardcat.com.billboardcat.UI.IndexView.NewsFragment;
-import app.billboardcat.com.billboardcat.UI.SendView.SendMediaActivity;
-import app.billboardcat.com.billboardcat.UI.SendView.SendRequireActivity;
-import app.billboardcat.com.billboardcat.Widget.popmenu.PopMenu;
-import app.billboardcat.com.billboardcat.Widget.popmenu.PopMenuItem;
-import app.billboardcat.com.billboardcat.Widget.popmenu.PopMenuItemListener;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -52,11 +47,6 @@ public class MainActivity extends AppCompatActivity
     @Bind(R.id.tab_room)
     LinearLayout tabRecommend;
 
-    @Bind(R.id.tab_plus_img)
-    ImageView tabPlusImg;
-    @Bind(R.id.tab_plus)
-    LinearLayout tabPlus;
-
     @Bind(R.id.tab_message_img)
     ImageView tabRoomImg;
     @Bind(R.id.tab_message_title)
@@ -76,8 +66,6 @@ public class MainActivity extends AppCompatActivity
     private static final String TAB_RECOMMEND_TAG = "TAB_RECOMMEND_TAG";
     private static final String TAB_ROOM_TAG = "TAB_ROOM_TAG";
     private static final String TAB_MINE_TAG = "TAB_MINE_TAG";
-
-    private PopMenu mPopMenu;
 
     private FragmentManager mFragmentManager;
     private IndexFragment mIndexFragment;
@@ -113,7 +101,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @OnClick({R.id.tab_index, R.id.tab_room, R.id.tab_plus, R.id.tab_message, R.id.tab_mine})
+    @OnClick({R.id.tab_index, R.id.tab_room, R.id.tab_message, R.id.tab_mine})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tab_index:
@@ -121,9 +109,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.tab_room:
                 setTabSelection(tabRecommend);
-                break;
-            case R.id.tab_plus:
-                setTabSelection(tabPlus);
                 break;
             case R.id.tab_message:
                 setTabSelection(tabRoom);
@@ -174,12 +159,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
 
-            case R.id.tab_plus:
-                initPopMenu(true);
-                if (mPopMenu.isShowing()) return;
-                mPopMenu.show();
-                break;
-
             case R.id.tab_message:
                 hideFragments(fragmentTransaction);
 
@@ -211,56 +190,6 @@ public class MainActivity extends AppCompatActivity
 
 
     /**
-     * 仿微博弹出菜单
-     *
-     * @param isProfessor 是否是大咖
-     */
-    private void initPopMenu(boolean isProfessor) {
-        if (isProfessor) {
-            mPopMenu = new PopMenu.Builder().attachToActivity(MainActivity.this)
-                    .addMenuItem(new PopMenuItem("发布媒体", getResources().getDrawable(R.mipmap.tab_btn_project_nor)))
-                    .addMenuItem(new PopMenuItem("发布需求", getResources().getDrawable(R.mipmap.tab_btn_demand_nor)))
-//                    .addMenuItem(new PopMenuItem("Constant", getResources().getDrawable(R.mipmap.tab_btn_demand_nor)))
-                    .setOnItemClickListener(new PopMenuItemListener() {
-                        @Override
-                        public void onItemClick(PopMenu popMenu, int position) {
-                            PopMenuItemClick(position);
-                        }
-                    })
-                    .build();
-        } else {
-            mPopMenu = new PopMenu.Builder().attachToActivity(MainActivity.this)
-                    .addMenuItem(new PopMenuItem("发布媒体", getResources().getDrawable(R.mipmap.tab_btn_project_nor)))
-                    .addMenuItem(new PopMenuItem("发布需求", getResources().getDrawable(R.mipmap.tab_btn_demand_nor)))
-//                    .addMenuItem(new PopMenuItem("Constant", getResources().getDrawable(R.mipmap.tab_btn_demand_nor)))
-                    .setOnItemClickListener(new PopMenuItemListener() {
-                        @Override
-                        public void onItemClick(PopMenu popMenu, int position) {
-                            PopMenuItemClick(position);
-                        }
-                    })
-                    .build();
-        }
-    }
-
-    /**
-     * @param position
-     */
-    private void PopMenuItemClick(int position) {
-        Intent intent;
-        switch (position) {
-            case 0:
-                intent = new Intent(MainActivity.this, SendMediaActivity.class);
-                startActivity(intent);
-                break;
-            case 1:
-                intent = new Intent(MainActivity.this, SendRequireActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
-
-    /**
      * 每次选中之前先清除上次的选中状态
      */
     public void initSelection(int inactiveResources) {
@@ -269,8 +198,6 @@ public class MainActivity extends AppCompatActivity
 
         tabRecommendImg.setImageResource(R.mipmap.tab2_g);
         tabRecommendTitle.setTextColor(inactiveResources);
-
-        tabPlusImg.setImageResource(R.mipmap.tab3_g);
 
         tabRoomImg.setImageResource(R.mipmap.tab4_g);
         tabRoomTitle.setTextColor(inactiveResources);

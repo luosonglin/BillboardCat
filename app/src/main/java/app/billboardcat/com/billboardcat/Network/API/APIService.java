@@ -5,6 +5,7 @@ import java.util.Map;
 
 import app.billboardcat.com.billboardcat.Network.Entity.Banner;
 import app.billboardcat.com.billboardcat.Network.Entity.LoginResponseBean;
+import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
@@ -32,4 +33,7 @@ public interface APIService {
     //Banner
     @GET("/BillboardCat_backend/v1/banner")
     Observable<Banner> getBanner();
+
+    @GET("/BillboardCat_backend/v1/media/selected")
+    Observable<List<Media>> getSelectedMedias();
 }

@@ -10,6 +10,7 @@ import app.billboardcat.com.billboardcat.Network.API.APIService;
 import app.billboardcat.com.billboardcat.Network.API.CacheProviders;
 import app.billboardcat.com.billboardcat.Network.Entity.Banner;
 import app.billboardcat.com.billboardcat.Network.Entity.HttpResult;
+import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.Network.Retrofit.ApiException;
 import app.billboardcat.com.billboardcat.Network.Retrofit.RetrofitUtils;
 import app.billboardcat.com.billboardcat.Util.FileUtil;
@@ -67,6 +68,11 @@ public class HttpData extends RetrofitUtils {
 
     public void HttpDataGetBanner(Observer<Banner> observer) {
         Observable observable = service.getBanner();
+        setSubscribe(observable, observer);
+    }
+
+    public void HttpDataGetSelectedMedias(Observer<List<Media>> observer) {
+        Observable observable = service.getSelectedMedias();
         setSubscribe(observable, observer);
     }
 

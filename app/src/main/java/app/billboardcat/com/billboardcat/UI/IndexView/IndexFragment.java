@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.TokenWatcher;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import app.billboardcat.com.billboardcat.Base.BaseQuickAdapter;
 import app.billboardcat.com.billboardcat.Network.Entity.Banner;
+import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.Network.HttpData.HttpData;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.UI.Adapter.SelectedMediaAdapter;
 import app.billboardcat.com.billboardcat.Util.GlideImageLoader;
 import app.billboardcat.com.billboardcat.Util.ToastUtils;
 import io.reactivex.Observer;
@@ -47,6 +52,11 @@ public class IndexFragment extends Fragment {
 
     private com.youth.banner.Banner mBanner;
     private List<String> bannerImages = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView2;
+    private SelectedMediaAdapter mSelectedMediaAdapter;
+
 
     public IndexFragment() {
         // Required empty public constructor
@@ -85,13 +95,58 @@ public class IndexFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_index, container, false);
         mBanner = (com.youth.banner.Banner) view.findViewById(R.id.banner);
+        getBannerData();
 
-        getData();
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
+        //设置布局管理器
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        //如果Item高度固定  增加该属性能够提高效率
+        mRecyclerView.setHasFixedSize(true);
+        mSelectedMediaAdapter = new SelectedMediaAdapter(R.layout.item_selected_media, null);
+        //设置加载动画
+        mSelectedMediaAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        //设置是否自动加载以及加载个数
+        mSelectedMediaAdapter.openLoadMore(6, true);
+        //将适配器添加到RecyclerView
+        mRecyclerView.setAdapter(mSelectedMediaAdapter);
+        getSelectedMediaData();
+
+        mRecyclerView2 = (RecyclerView) view.findViewById(R.id.rv_list2);
+
 
         return view;
     }
 
-    private void getData() {
+    private void getSelectedMediaData() {
+        HttpData.getInstance().HttpDataGetSelectedMedias(new Observer<List<Media>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Media> media) {
+                mSelectedMediaAdapter.addData(media);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(getActivity().getLocalClassName(), "onError: " + e.getMessage()
+                        + "\n" + e.getCause()
+                        + "\n" + e.getLocalizedMessage()
+                        + "\n" + Arrays.toString(e.getStackTrace()));
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    private void getBannerData() {
         HttpData.getInstance().HttpDataGetBanner(new Observer<Banner>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -105,7 +160,7 @@ public class IndexFragment extends Fragment {
                 bannerImages.add(banner.getImg2());
                 bannerImages.add(banner.getImg3());
                 bannerImages.add(banner.getImg4());
-                Log.e(getActivity().getLocalClassName()+" hhh ", banner.getImg1() + " "+bannerImages.size());
+                Log.e(getActivity().getLocalClassName() + " hhh ", banner.getImg1() + " " + bannerImages.size());
                 mBanner.setImages(bannerImages)
                         .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
                         .setBannerAnimation(Transformer.Default)
