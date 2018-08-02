@@ -15,6 +15,7 @@ import app.billboardcat.com.billboardcat.Base.BaseQuickAdapter;
 import app.billboardcat.com.billboardcat.Base.BaseViewHolder;
 import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.UI.MediaView.MediaDetailActivity;
 
 public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
     private static final String TAG = LatestRecommendationAdapter.class.getSimpleName();
@@ -42,10 +43,9 @@ public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
         helper.getView(R.id.item_index_latest_recommandation_cv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(mContext, ParkDetailActivity.class);
-//                intent.putExtra("parkId", item.getId());
-//                Log.e(TAG, item.getId()+"");
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, MediaDetailActivity.class);
+                intent.putExtra("id", item.getId());
+                mContext.startActivity(intent);
             }
         });
     }

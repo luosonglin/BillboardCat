@@ -81,6 +81,11 @@ public class HttpData extends RetrofitUtils {
         setSubscribe(observable, observer);
     }
 
+    public void HttpDataGetMediaDetail(Observer<Media> observer, long id) {
+        Observable observable = service.getMediaDetail(id);
+        setSubscribe(observable, observer);
+    }
+
     /**
      * 插入观察者
      *

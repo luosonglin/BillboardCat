@@ -14,6 +14,7 @@ import app.billboardcat.com.billboardcat.Base.BaseQuickAdapter;
 import app.billboardcat.com.billboardcat.Base.BaseViewHolder;
 import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.R;
+import app.billboardcat.com.billboardcat.UI.MediaView.MediaDetailActivity;
 
 public class SelectedMediaAdapter extends BaseQuickAdapter<Media> {
     public SelectedMediaAdapter(int layoutResId, List<Media> data) {
@@ -31,12 +32,14 @@ public class SelectedMediaAdapter extends BaseQuickAdapter<Media> {
                 .apply(options)
                 .into((ImageView) helper.getView(R.id.selected_park_iv));
 
+        helper.setText(R.id.name, item.getName());
+
         helper.getView(R.id.selected_park_iv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                    Intent intent = new Intent(mContext, MediaActivity.class);
-//                    intent.putExtra("id", item.getId());
-//                    mContext.startActivity(intent);
+                    Intent intent = new Intent(mContext, MediaDetailActivity.class);
+                    intent.putExtra("id", item.getId());
+                    mContext.startActivity(intent);
             }
         });
     }
