@@ -37,7 +37,6 @@ public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
         helper.setText(R.id.recommendation_location, item.getLocation())
                 .setText(R.id.recommendation_name, item.getName())
                 .setText(R.id.recommendation_money, item.getSize())
-                .setText(R.id.recommendation_city, item.getLocation())
                 .setText(R.id.recommendation_rule, item.getStyle());
 
         helper.getView(R.id.item_index_latest_recommandation_cv).setOnClickListener(new View.OnClickListener() {

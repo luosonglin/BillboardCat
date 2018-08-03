@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey2"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".UI.IndexView.IndexFragment">
 
@@ -43,120 +43,110 @@
             <com.youth.banner.Banner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 app:delay_time="5000"
                 app:image_scale_type="fit_xy" />
 
-            <android.support.v7.widget.CardView
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="-40dp"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="@android:color/white"
-                app:cardCornerRadius="10sp"
-                app:cardElevation="4dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:id="@+id/find_media"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/find_media"
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/map_icon" />
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/map_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="2dp"
-                            android:text="地图找牌"
-                            android:textColor="@color/grey"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/grey1" />
-
-                    <LinearLayout
-                        android:id="@+id/media_monitor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/earn_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="2dp"
-                            android:text="实时监控"
-                            android:textColor="@color/grey"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@color/grey1" />
-
-                    <LinearLayout
-                        android:id="@+id/media_backup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_gravity="center_horizontal"
-                            android:src="@mipmap/company_icon" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="2dp"
-                            android:text="媒体报备"
-                            android:textColor="@color/grey"
-                            android:textSize="14sp" />
-                    </LinearLayout>
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:text="地图找牌"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grey1" />
+
+                <LinearLayout
+                    android:id="@+id/media_monitor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/earn_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:text="实时监控"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grey1" />
+
+                <LinearLayout
+                    android:id="@+id/media_backup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/company_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"
+                        android:text="媒体报备"
+                        android:textColor="@color/grey"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
@@ -166,21 +156,13 @@
                     android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:text="精选媒体"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
                     <View
                         android:layout_width="2dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginBottom="3dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="3dp"
                         android:background="@color/grey1" />
@@ -189,9 +171,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="Selected media"
+                        android:layout_marginLeft="5dp"
+                        android:text="精选媒体"
                         android:textColor="@color/grey"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <View
@@ -212,10 +195,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:orientation="vertical"
+                android:layout_marginTop="12dp"
                 android:background="@color/white"
-                >
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -228,21 +210,12 @@
                         android:layout_alignParentLeft="true"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="20dp"
-                            android:text="最新推荐"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
-
                         <View
                             android:layout_width="2dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="center_vertical"
                             android:layout_marginBottom="3dp"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="20dp"
                             android:layout_marginRight="5dp"
                             android:layout_marginTop="3dp"
                             android:background="@color/grey1" />
@@ -251,16 +224,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="Latest Recommendation"
+                            android:layout_marginLeft="5dp"
+                            android:text="最新推荐"
                             android:textColor="@color/grey"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="6dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
                         android:text="更多"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />

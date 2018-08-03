@@ -42,4 +42,7 @@ public interface APIService {
 
     @GET("/BillboardCat_backend/v1/media/{id}")
     Observable<Media> getMediaDetail(@Path("id") long id);
+
+    @GET("/BillboardCat_backend/v1/media")
+    Observable<List<Media>> getAllMedia();
 }

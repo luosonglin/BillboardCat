@@ -1,13 +1,245 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context="app.billboardcat.com.billboardcat.UI.IndexView.MediaFragment">
 
+
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <ImageView
+            android:id="@+id/map_image"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="12dp"
+            android:src="@mipmap/roomfragment_location" />
+        <RelativeLayout
+            android:id="@+id/search_rlyt"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/map_image"
+            android:background="@drawable/textview_radius_grey"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/roomfragment_search" />
+
+            <EditText
+                android:id="@+id/search_edit"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="36dp"
+                android:background="@drawable/search_bar_bg"
+                android:hint="请输入媒体名称"
+                android:textColorHint="@color/grey"
+                android:gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingRight="0dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:singleLine="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="3dp"
+                android:background="@drawable/textview_all_blue"
+                android:text="搜索"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/district_rlyt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/line1"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/district_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="位置"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/roomfragment_downward_triangle" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/area_rlyt"
+            android:background="@color/grey" />
+
+        <RelativeLayout
+            android:id="@+id/area_rlyt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/area_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="规格"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/roomfragment_downward_triangle" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/area_rlyt"
+            android:background="@color/grey" />
+
+        <RelativeLayout
+            android:id="@+id/day_rent_rlyt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/line2"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/day_rent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="形式"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/roomfragment_downward_triangle" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/grey" />
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="media" />
+        android:layout_marginTop="2dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:id="@+id/map_rlyt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <!--<com.amap.api.maps.MapView-->
+                <!--android:id="@+id/map"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent" />-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:background="@color/grey2" />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/core_rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:background="@color/white"
+            android:elevation="2dp"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>
