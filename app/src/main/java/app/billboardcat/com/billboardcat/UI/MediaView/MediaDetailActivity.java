@@ -14,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions;
 import app.billboardcat.com.billboardcat.Network.Entity.Media;
 import app.billboardcat.com.billboardcat.Network.HttpData.HttpData;
 import app.billboardcat.com.billboardcat.R;
-import app.billboardcat.com.billboardcat.Util.GlideCircleTransform;
 import app.billboardcat.com.billboardcat.Util.ToastUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -48,6 +47,12 @@ public class MediaDetailActivity extends AppCompatActivity {
     ImageView imgLocation;
     @Bind(R.id.description)
     TextView description;
+    @Bind(R.id.collect_iv)
+    ImageView collectIv;
+    @Bind(R.id.secretary)
+    TextView secretary;
+    @Bind(R.id.broker)
+    TextView broker;
 
     private long id;
     RequestOptions options = new RequestOptions()
@@ -85,7 +90,7 @@ public class MediaDetailActivity extends AppCompatActivity {
                         .apply(options)
                         .into(image);
                 name.setText(media.getName());
-                status.setText(media.getIsUse()==0?"立即可上":"已使用");
+                status.setText(media.getIsUse() == 0 ? "立即可上" : "已使用");
                 money.setText(media.getPrice());
                 style.setText(media.getStyle());
                 size.setText(media.getSize());
@@ -110,7 +115,7 @@ public class MediaDetailActivity extends AppCompatActivity {
         }, id);
     }
 
-    @OnClick({R.id.image, R.id.back, R.id.share})
+    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.secretary, R.id.broker})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image:
@@ -119,6 +124,13 @@ public class MediaDetailActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.share:
+                break;
+            case R.id.collect_iv:
+                break;
+            case R.id.secretary:
+                break;
+            case R.id.broker:
+
                 break;
         }
     }

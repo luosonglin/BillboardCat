@@ -343,11 +343,12 @@
 
                     <ImageView
                         android:id="@+id/collect_iv"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="6dp" />
+                        android:layout_marginTop="6dp"
+                        android:src="@mipmap/collect_grey"/>
 
                     <TextView
                         android:layout_width="20dp"
