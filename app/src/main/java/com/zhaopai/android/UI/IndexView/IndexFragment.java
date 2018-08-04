@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,7 +117,8 @@ public class IndexFragment extends Fragment {
 
         mRecyclerView2 = (RecyclerView) view.findViewById(R.id.rv_list2);
         //设置布局管理器
-        mRecyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        mRecyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView2.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         //如果Item高度固定  增加该属性能够提高效率
         mRecyclerView2.setHasFixedSize(true);
         //禁止RecyclerView的嵌套滑动特性
@@ -202,6 +204,7 @@ public class IndexFragment extends Fragment {
                 Log.e(getActivity().getLocalClassName() + " hhh ", banner.getImg1() + " " + bannerImages.size());
                 mBanner.setImages(bannerImages)
                         .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
+                        .setIndicatorGravity(BannerConfig.RIGHT)
                         .setBannerAnimation(Transformer.Default)
                         .setImageLoader(new GlideImageLoader())
                         .start();

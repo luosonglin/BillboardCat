@@ -40,22 +40,31 @@
                     android:src="@mipmap/roomfragment_search" />
             </RelativeLayout>
 
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/grey2"/>
+
             <com.youth.banner.Banner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 app:delay_time="5000"
-                app:image_scale_type="fit_xy" />
-
-
+                app:image_scale_type="fit_xy"
+                app:indicator_width="6dp"
+                app:indicator_height="6dp"
+                app:indicator_margin="1.5dp"/>
+            
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -67,8 +76,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@mipmap/map_icon" />
 
@@ -78,15 +87,14 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="2dp"
                         android:text="地图找牌"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                        android:textColor="@color/grey" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/grey1" />
 
                 <LinearLayout
@@ -97,8 +105,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@mipmap/earn_icon" />
 
@@ -108,15 +116,14 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="2dp"
                         android:text="实时监控"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                        android:textColor="@color/grey" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/grey1" />
 
                 <LinearLayout
@@ -127,8 +134,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@mipmap/company_icon" />
 
@@ -138,22 +145,25 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="2dp"
                         android:text="媒体报备"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                        android:textColor="@color/grey"/>
                 </LinearLayout>
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="@color/grey2"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="3dp"
                     android:orientation="horizontal">
 
 
@@ -192,17 +202,22 @@
             </LinearLayout>
 
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/grey2"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:background="@color/white"
                 android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginTop="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -235,10 +250,10 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:text="更多"
+                        android:layout_marginRight="16dp"
+                        android:text="更多 >"
                         android:textColor="@color/grey"
-                        android:textSize="14sp" />
+                        android:textSize="10sp" />
                 </RelativeLayout>
 
                 <View
