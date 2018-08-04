@@ -7,7 +7,7 @@
     android:foreground="?attr/selectableItemBackground"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="4sp"
-    app:cardElevation="2dp"
+    app:cardElevation="0.8dp"
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="true">
     <LinearLayout
