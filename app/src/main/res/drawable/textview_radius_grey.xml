@@ -15,6 +15,6 @@
     <!-- 描边 -->
     <stroke
         android:width="0.8dp"
-        android:color="@color/grey"
+        android:color="@color/grey1"
         android:dashWidth="0.2dp"/>
 </shape>

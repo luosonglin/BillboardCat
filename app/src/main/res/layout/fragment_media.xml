@@ -10,24 +10,24 @@
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="46dp">
 
         <ImageView
             android:id="@+id/map_image"
-            android:layout_width="40dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="6dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:padding="12dp"
-            android:src="@mipmap/roomfragment_location" />
+            android:src="@mipmap/roomfragment_location"
+            android:scaleType="center"/>
+
         <RelativeLayout
             android:id="@+id/search_rlyt"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="46dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@+id/map_image"
             android:background="@drawable/textview_radius_grey"
@@ -79,7 +79,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/grey" />
+        android:background="@color/grey1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -127,7 +127,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/area_rlyt"
-            android:background="@color/grey" />
+            android:background="@color/grey1" />
 
         <RelativeLayout
             android:id="@+id/area_rlyt"
@@ -168,7 +168,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/area_rlyt"
-            android:background="@color/grey" />
+            android:background="@color/grey1" />
 
         <RelativeLayout
             android:id="@+id/day_rent_rlyt"
@@ -207,7 +207,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="@color/grey" />
+        android:background="@color/grey1" />
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -124,7 +124,7 @@ public class MediaFragment extends Fragment {
         mMediaAdapter = new MediaAdapter(R.layout.item_media, null);
         //分割线
         mRecyclerView.addItemDecoration(new RecycleViewDivider(
-                getContext(), LinearLayoutManager.VERTICAL, 6, getResources().getColor(R.color.grey1)));
+                getContext(), LinearLayoutManager.VERTICAL, 3, getResources().getColor(R.color.grey1)));
         //设置加载动画
         mMediaAdapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_CUSTOM);
         //设置是否自动加载以及加载个数
