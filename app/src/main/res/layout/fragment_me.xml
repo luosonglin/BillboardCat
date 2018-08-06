@@ -124,7 +124,7 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -149,7 +149,7 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -174,7 +174,7 @@
                             android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -196,10 +196,9 @@
                         <LinearLayout
                             android:id="@+id/my_collect"
                             android:layout_margin="1dp"
-                            android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -221,10 +220,9 @@
                         <LinearLayout
                             android:id="@+id/my_order"
                             android:layout_margin="1dp"
-                            android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
@@ -247,10 +245,9 @@
                         <LinearLayout
                             android:id="@+id/my_enroll"
                             android:layout_margin="1dp"
-                            android:gravity="center"
                             android:orientation="vertical"
                             app:layout_columnWeight="1"
-                            app:layout_rowWeight="0.1">
+                            app:layout_rowWeight="1">
 
                             <ImageView
                                 android:layout_width="30dp"
