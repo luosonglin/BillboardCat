@@ -26,7 +26,7 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends AppCompatActivity
-        implements IndexFragment.OnFragmentInteractionListener,
+        implements
         MediaFragment.OnFragmentInteractionListener,
         NewsFragment.OnFragmentInteractionListener{
 
