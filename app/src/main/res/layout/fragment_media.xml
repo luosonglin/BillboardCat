@@ -18,8 +18,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/roomfragment_location"
-            android:scaleType="center"/>
+            android:padding="14dp"
+            android:src="@mipmap/roomfragment_location"/>
 
         <RelativeLayout
             android:id="@+id/search_rlyt"
