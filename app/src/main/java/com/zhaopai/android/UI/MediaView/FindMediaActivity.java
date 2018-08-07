@@ -1,9 +1,15 @@
 package com.zhaopai.android.UI.MediaView;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout;
@@ -13,15 +19,18 @@ import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.CustomListener;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.zhaopai.android.R;
+import com.zhaopai.android.Util.DateUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class FindMediaActivity extends Activity  {
+public class FindMediaActivity extends Activity {
 
     private TextView style;
     private LinearLayout startTimeLlyt;
@@ -30,8 +39,9 @@ public class FindMediaActivity extends Activity  {
     private TextView endTime;
     private LinearLayout submit;
 
-    private TimePickerView pvTime, pvCustomTime, pvCustomLunar;
-    private OptionsPickerView pvOptions, pvCustomOptions, pvNoLinkOptions;
+    private TimePickerView pvTime;
+    private boolean isSetUpStartTime; //true设置开始时间，false设置结束时间
+    private OptionsPickerView pvCustomOptions;
     private ArrayList<String> cardItem = new ArrayList<>();
 
     @Override
@@ -52,28 +62,36 @@ public class FindMediaActivity extends Activity  {
         style.setOnClickListener(view -> {
             pvCustomOptions.show(); //弹出自定义条件选择器
         });
-        startTimeLlyt.setOnClickListener(view -> {
 
+
+        initTimePicker();
+        startTimeLlyt.setOnClickListener(view -> {
+            isSetUpStartTime = true;
+            pvTime.show(view);//弹出时间选择器，传递参数过去，回调的时候则可以绑定此view
+        });
+        endTimeLlyt.setOnClickListener(view -> {
+            isSetUpStartTime = false;
+            pvTime.show(view);
         });
     }
 
-    private EditText getName(){
+    private EditText getName() {
         return (EditText) findViewById(R.id.name);
     }
 
-    private EditText getIndustry(){
+    private EditText getIndustry() {
         return (EditText) findViewById(R.id.industry);
     }
 
-    private EditText getArea(){
+    private EditText getArea() {
         return (EditText) findViewById(R.id.area);
     }
 
-    private EditText getPrice(){
+    private EditText getPrice() {
         return (EditText) findViewById(R.id.price);
     }
 
-    private EditText getIntroduction(){
+    private EditText getIntroduction() {
         return (EditText) findViewById(R.id.introduction);
     }
 
@@ -119,7 +137,43 @@ public class FindMediaActivity extends Activity  {
                 .build();
 
         pvCustomOptions.setPicker(cardItem);//添加数据
-
-
     }
+
+    private void initTimePicker() {//Dialog 模式下，在底部弹出
+
+        pvTime = new TimePickerBuilder(this, (date, v) -> {
+            if (isSetUpStartTime)
+                startTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+            else
+                endTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+        })
+                .setTimeSelectChangeListener(date -> Log.i("pvTime", "onTimeSelectChanged"))
+                .setLabel("年","月","日"," ："," ：","")//默认设置为年月日时分秒
+                .setType(new boolean[]{true, true, true, true, true, true})
+                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .setCancelText("取消")//取消按钮文字
+                .setSubmitText("确认")//确认按钮文字
+                .build();
+
+        Dialog mDialog = pvTime.getDialog();
+        if (mDialog != null) {
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvTime.getDialogContainerLayout().setLayoutParams(params);
+
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+                dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+            }
+        }
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.zhaopai.android.Util;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -80,6 +82,11 @@ public class DateUtils {
             long currentTime = dateToLong(date); // date类型转成long类型
             return currentTime;
         }
+    }
+
+    public static String dateToString(Date date, String formatType) {
+        SimpleDateFormat format = new SimpleDateFormat(formatType);
+        return format.format(date);
     }
 }
 
