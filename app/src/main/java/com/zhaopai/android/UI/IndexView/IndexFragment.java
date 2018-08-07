@@ -1,5 +1,6 @@
 package com.zhaopai.android.UI.IndexView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.SelectedMediaAdapter;
+import com.zhaopai.android.UI.MediaView.FindMediaActivity;
 import com.zhaopai.android.Util.GlideImageLoader;
 import com.zhaopai.android.Util.ToastUtils;
 import io.reactivex.Observer;
@@ -71,6 +73,8 @@ public class IndexFragment extends Fragment {
         mRecyclerView2 = (RecyclerView) view.findViewById(R.id.rv_list2);
 
         getBannerData(banner);
+
+        findMedia.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), FindMediaActivity.class)));
 
         //设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -170,7 +174,6 @@ public class IndexFragment extends Fragment {
                 bannerImages.add(banner.getImg2());
                 bannerImages.add(banner.getImg3());
                 bannerImages.add(banner.getImg4());
-                Log.e(getActivity().getLocalClassName() + " hhh ", banner.getImg1() + " " + bannerImages.size());
                 if (bannerImages != null) {
                     mBanner.setImages(bannerImages)
                             .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
@@ -184,10 +187,7 @@ public class IndexFragment extends Fragment {
             @Override
             public void onError(Throwable e) {
                 ToastUtils.show(getActivity(), e.getMessage());
-                Log.e(getActivity().getLocalClassName(), "onError: " + e.getMessage()
-                        + "\n" + e.getCause()
-                        + "\n" + e.getLocalizedMessage()
-                        + "\n" + Arrays.toString(e.getStackTrace()));
+                Log.e(getActivity().getLocalClassName(), e.getMessage());
             }
 
             @Override

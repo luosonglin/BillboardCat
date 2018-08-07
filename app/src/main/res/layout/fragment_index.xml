@@ -86,7 +86,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="2dp"
-                        android:text="地图找牌"
+                        android:text="寻找媒体"
                         android:textColor="@color/grey" />
                 </LinearLayout>
 
