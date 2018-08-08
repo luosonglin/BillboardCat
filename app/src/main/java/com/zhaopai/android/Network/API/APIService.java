@@ -6,15 +6,14 @@ import java.util.Map;
 import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.LoginResponseBean;
 import com.zhaopai.android.Network.Entity.Media;
+import com.zhaopai.android.Network.Entity.FindMedia;
+
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -45,4 +44,7 @@ public interface APIService {
 
     @GET("/BillboardCat_backend/v1/media")
     Observable<List<Media>> getAllMedia();
+
+    @PUT("/BillboardCat_backend/v1/searchMedia")
+    Observable<String> findMedia(@Body FindMedia findMedia);
 }

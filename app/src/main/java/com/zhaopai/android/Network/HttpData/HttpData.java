@@ -9,6 +9,7 @@ import java.util.Map;
 import com.zhaopai.android.Network.API.APIService;
 import com.zhaopai.android.Network.API.CacheProviders;
 import com.zhaopai.android.Network.Entity.Banner;
+import com.zhaopai.android.Network.Entity.FindMedia;
 import com.zhaopai.android.Network.Entity.HttpResult;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.Retrofit.ApiException;
@@ -88,6 +89,11 @@ public class HttpData extends RetrofitUtils {
 
     public void HttpDataGetAllMedia(Observer<List<Media>> observer) {
         Observable observable = service.getAllMedia();
+        setSubscribe(observable, observer);
+    }
+
+    public void HttpDataFindMedia(Observer<String> observer, FindMedia findMedia) {
+        Observable observable = service.findMedia(findMedia);
         setSubscribe(observable, observer);
     }
 

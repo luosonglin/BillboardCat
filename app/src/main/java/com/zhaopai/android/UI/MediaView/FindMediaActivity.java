@@ -23,12 +23,18 @@ import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.zhaopai.android.Network.Entity.FindMedia;
+import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.Util.DateUtils;
+import com.zhaopai.android.Util.ToastUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class FindMediaActivity extends Activity {
 
@@ -72,6 +78,20 @@ public class FindMediaActivity extends Activity {
         endTimeLlyt.setOnClickListener(view -> {
             isSetUpStartTime = false;
             pvTime.show(view);
+        });
+
+        submit.setOnClickListener(view -> {
+            FindMedia findMedia = new FindMedia();
+            findMedia.setProductName(getName().getText().toString());
+            findMedia.setBelongIndustry(getIndustry().getText().toString());
+            findMedia.setMediaWays(style.getText().toString());
+            findMedia.setPutTimeStart(startTime.getText().toString());
+            findMedia.setPutTimeEnd(endTime.getText().toString());
+            findMedia.setPutPosition(getArea().getText().toString());
+            findMedia.setPutInformation(getIntroduction().getText().toString());
+            findMedia.setPutBudget(getPrice().getText().toString());
+            findMedia.setStatus(0);
+            submitFindMedia(findMedia);
         });
     }
 
@@ -148,7 +168,7 @@ public class FindMediaActivity extends Activity {
                 endTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
         })
                 .setTimeSelectChangeListener(date -> Log.i("pvTime", "onTimeSelectChanged"))
-                .setLabel("年","月","日"," ："," ：","")//默认设置为年月日时分秒
+                .setLabel("年", "月", "日", " ：", " ：", "")//默认设置为年月日时分秒
                 .setType(new boolean[]{true, true, true, true, true, true})
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
                 .setCancelText("取消")//取消按钮文字
@@ -157,7 +177,6 @@ public class FindMediaActivity extends Activity {
 
         Dialog mDialog = pvTime.getDialog();
         if (mDialog != null) {
-
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -175,5 +194,32 @@ public class FindMediaActivity extends Activity {
         }
     }
 
+    private void submitFindMedia(FindMedia findMedia) {
+        HttpData.getInstance().HttpDataFindMedia(new Observer<String>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+                if (!s.equals("success")) {
+//                    ToastUtils.show(FindMediaActivity.this, "");
+                    return;
+                }
+                ToastUtils.show(FindMediaActivity.this, "提交成功");
+                finish();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }, findMedia);
+    }
 
 }
