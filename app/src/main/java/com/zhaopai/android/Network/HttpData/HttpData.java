@@ -12,6 +12,7 @@ import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.FindMedia;
 import com.zhaopai.android.Network.Entity.HttpResult;
 import com.zhaopai.android.Network.Entity.Media;
+import com.zhaopai.android.Network.Entity.ReportMedia;
 import com.zhaopai.android.Network.Retrofit.ApiException;
 import com.zhaopai.android.Network.Retrofit.RetrofitUtils;
 import com.zhaopai.android.Util.FileUtil;
@@ -94,6 +95,11 @@ public class HttpData extends RetrofitUtils {
 
     public void HttpDataFindMedia(Observer<String> observer, FindMedia findMedia) {
         Observable observable = service.findMedia(findMedia);
+        setSubscribe(observable, observer);
+    }
+
+    public void HttpDataReportMedia(Observer<String> observer, ReportMedia reportMedia) {
+        Observable observable = service.reportMedia(reportMedia);
         setSubscribe(observable, observer);
     }
 

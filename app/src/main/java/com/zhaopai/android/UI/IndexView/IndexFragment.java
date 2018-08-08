@@ -23,11 +23,13 @@ import java.util.List;
 import com.zhaopai.android.Base.BaseQuickAdapter;
 import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.Media;
+import com.zhaopai.android.Network.Entity.ReportMedia;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.SelectedMediaAdapter;
 import com.zhaopai.android.UI.MediaView.FindMediaActivity;
+import com.zhaopai.android.UI.MediaView.ReportMediaActivity;
 import com.zhaopai.android.Util.GlideImageLoader;
 import com.zhaopai.android.Util.ToastUtils;
 import io.reactivex.Observer;
@@ -75,6 +77,7 @@ public class IndexFragment extends Fragment {
         getBannerData(banner);
 
         findMedia.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), FindMediaActivity.class)));
+        mediaBackup.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), ReportMediaActivity.class)));
 
         //设置布局管理器
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());

@@ -7,6 +7,7 @@ import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.LoginResponseBean;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.Entity.FindMedia;
+import com.zhaopai.android.Network.Entity.ReportMedia;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -47,4 +48,7 @@ public interface APIService {
 
     @PUT("/BillboardCat_backend/v1/searchMedia")
     Observable<String> findMedia(@Body FindMedia findMedia);
+
+    @PUT("/BillboardCat_backend/v1/reportMedia")
+    Observable<String> reportMedia(@Body ReportMedia reportMedia);
 }

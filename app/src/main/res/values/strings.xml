@@ -45,5 +45,8 @@
     <string name="info">投放信息</string>
     <string name="input_info">请输入投放详情信息</string>
     <string name="submit">提交</string>
+    <string name="report_media">媒体报备</string>
+    <string name="customer_name">客户名称</string>
+    <string name="input_customer_name">请填写客户名称</string>
 
 </resources>
