@@ -3,6 +3,7 @@ package com.zhaopai.android.UI.IndexView;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 
 
 import com.zhaopai.android.R;
+import com.zhaopai.android.UI.MediaView.BaseMediaListActivity;
 
 public class MeFragment extends Fragment {
     private ScrollView scrollView;
@@ -61,8 +63,10 @@ public class MeFragment extends Fragment {
         myEnroll = (LinearLayout) view.findViewById(R.id.my_enroll);
         headIc = (ImageView) view.findViewById(R.id.head_ic);
 
-
         initHeadView();
+
+        myEnroll.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), BaseMediaListActivity.class)));
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
