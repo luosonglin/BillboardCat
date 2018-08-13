@@ -31,10 +31,14 @@ public interface APIService {
     @POST("/app/public/loginin")
     Observable<LoginResponseBean> sendMsgCaptcha(@QueryMap Map<String, Object> map);
 
+    @GET("/BillboardCat_backend/v1/user/{id}")
+    Observable<User> getUserInfo(@Path("id") long id);
+
     //Banner
     @GET("/BillboardCat_backend/v1/banner")
     Observable<Banner> getBanner();
 
+    //Media
     @GET("/BillboardCat_backend/v1/media/selected")
     Observable<List<Media>> getSelectedMedias();
 
@@ -53,6 +57,7 @@ public interface APIService {
     @PUT("/BillboardCat_backend/v1/reportMedia")
     Observable<String> reportMedia(@Body ReportMedia reportMedia);
 
-    @GET("/BillboardCat_backend/v1/user/{id}")
-    Observable<User> getUserInfo(@Path("id") long id);
+    @GET("/BillboardCat_backend/v1/media/my/{id}")
+    Observable<List<Media>> getMyMedia(@Path("id") long id);
+
 }

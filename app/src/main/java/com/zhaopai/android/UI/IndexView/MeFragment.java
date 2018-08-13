@@ -76,10 +76,15 @@ public class MeFragment extends Fragment {
 
 
         //test data
-        long user_id =3;
+        long user_id = 3;
         getUserData(user_id);
 
-        myEnroll.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), BaseMediaListActivity.class)));
+        myMedia.setOnClickListener(view1 -> startActivity(
+                new Intent(getActivity(), BaseMediaListActivity.class)
+                        .putExtra("title", "我的媒体")));
+        myEnroll.setOnClickListener(view1 -> startActivity(
+                new Intent(getActivity(), BaseMediaListActivity.class)
+                        .putExtra("title", "我的报备")));
 
     }
 
