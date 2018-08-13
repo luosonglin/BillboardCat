@@ -8,6 +8,7 @@ import com.zhaopai.android.Network.Entity.LoginResponseBean;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.Entity.FindMedia;
 import com.zhaopai.android.Network.Entity.ReportMedia;
+import com.zhaopai.android.Network.Entity.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -51,4 +52,7 @@ public interface APIService {
 
     @PUT("/BillboardCat_backend/v1/reportMedia")
     Observable<String> reportMedia(@Body ReportMedia reportMedia);
+
+    @GET("/BillboardCat_backend/v1/user/{id}")
+    Observable<User> getUserInfo(@Path("id") long id);
 }

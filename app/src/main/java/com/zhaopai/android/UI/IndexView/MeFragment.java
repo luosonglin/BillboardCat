@@ -17,8 +17,17 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.zhaopai.android.Network.Entity.User;
+import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.UI.MediaView.BaseMediaListActivity;
+import com.zhaopai.android.Util.GlideCircleTransform;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class MeFragment extends Fragment {
     private ScrollView scrollView;
@@ -64,6 +73,11 @@ public class MeFragment extends Fragment {
         headIc = (ImageView) view.findViewById(R.id.head_ic);
 
         initHeadView();
+
+
+        //test data
+        long user_id =3;
+        getUserData(user_id);
 
         myEnroll.setOnClickListener(view1 -> startActivity(new Intent(getActivity(), BaseMediaListActivity.class)));
 
@@ -136,6 +150,58 @@ public class MeFragment extends Fragment {
             img.setLayoutParams(lp);
         });
         anim.start();
+
+
+        //test data
+        long user_id = 3;
+        getUserData(user_id);
+    }
+
+    private void getUserData(Long id) {
+        HttpData.getInstance().HttpDataGetUserInfo(new Observer<User>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(User user) {
+                name.setText(user.getName().trim());
+                switch (user.getGroupid()) {
+                    case 1:
+                        type.setText("游客");
+                        break;
+                    case 2:
+                        type.setText("广告主");
+                        break;
+                    case 3:
+                        type.setText("媒体主");
+                        break;
+                    case 4:
+                        type.setText("代理商");
+                        break;
+                }
+                Glide.with(getActivity())
+                        .load(user.getAvatar())
+                        .apply(new RequestOptions()
+                                .centerCrop()
+                                .dontAnimate()
+                                .placeholder(R.mipmap.avator_default)
+                                .transform(new GlideCircleTransform())
+                                .diskCacheStrategy(DiskCacheStrategy.ALL))
+                        .into(headIc);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }, id);
     }
 
 }
