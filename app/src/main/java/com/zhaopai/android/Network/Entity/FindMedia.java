@@ -10,8 +10,8 @@ public class FindMedia {
      * putBudget : string
      * putInformation : string
      * putPosition : string
-     * putTimeEnd : 2018-08-08T03:47:10.444Z
-     * putTimeStart : 2018-08-08T03:47:10.444Z
+     * putTimeEnd : 2018-08-14T01:52:19.785Z
+     * putTimeStart : 2018-08-14T01:52:19.785Z
      * reviewId : 0
      * reviewName : string
      * status : 0
@@ -25,8 +25,8 @@ public class FindMedia {
     private String putBudget;
     private String putInformation;
     private String putPosition;
-    private String putTimeEnd;
-    private String putTimeStart;
+    private long putTimeEnd;
+    private long putTimeStart;
     private int reviewId;
     private String reviewName;
     private int status;
@@ -88,19 +88,19 @@ public class FindMedia {
         this.putPosition = putPosition;
     }
 
-    public String getPutTimeEnd() {
+    public long getPutTimeEnd() {
         return putTimeEnd;
     }
 
-    public void setPutTimeEnd(String putTimeEnd) {
+    public void setPutTimeEnd(long putTimeEnd) {
         this.putTimeEnd = putTimeEnd;
     }
 
-    public String getPutTimeStart() {
+    public long getPutTimeStart() {
         return putTimeStart;
     }
 
-    public void setPutTimeStart(String putTimeStart) {
+    public void setPutTimeStart(long putTimeStart) {
         this.putTimeStart = putTimeStart;
     }
 

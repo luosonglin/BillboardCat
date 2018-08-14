@@ -1,5 +1,6 @@
 package com.zhaopai.android.Network.Retrofit;
 
+import com.google.gson.GsonBuilder;
 import com.zhaopai.android.Constant.Constant;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -38,6 +39,8 @@ public abstract class RetrofitUtils {
                     .addConverterFactory(GsonConverterFactory.create())
                     //添加回调库，采用RxJava
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    //设置Gson宽松模式
+                    .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setLenient().create()))
                     //设置使用okhttp网络请求
                     .client(mOkHttpClient)
                     .build();
@@ -47,7 +50,7 @@ public abstract class RetrofitUtils {
     }
 
     /**
-     * 获取Retrofit对象，不带token
+     * 获取Retrofit对象，不带token,test
      *
      * @return
      */

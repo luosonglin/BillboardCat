@@ -2,6 +2,7 @@ package com.zhaopai.android.Util;
 
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,7 +29,7 @@ public class DateUtils {
         return (new SimpleDateFormat(format)).format(cal.getTime());
     }
 
-    public static String formatDate(String longStr, String format) {
+    public static String formatDate2(String longStr, String format) {
         try {
             return formatDate(Long.parseLong(longStr), format);
         } catch (Exception var3) {
@@ -88,5 +89,6 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat(formatType);
         return format.format(date);
     }
+
 }
 

@@ -29,10 +29,13 @@ import com.zhaopai.android.R;
 import com.zhaopai.android.Util.DateUtils;
 import com.zhaopai.android.Util.ToastUtils;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -42,9 +45,11 @@ public class FindMediaActivity extends Activity {
     private ImageView back;
     private TextView style;
     private LinearLayout startTimeLlyt;
-    private TextView startTime;
+    private TextView startTimeTv;
+    private long startTime;
     private LinearLayout endTimeLlyt;
-    private TextView endTime;
+    private TextView endTimeTv;
+    private long endTime;
     private LinearLayout submit;
 
     private TimePickerView pvTime;
@@ -60,9 +65,9 @@ public class FindMediaActivity extends Activity {
         back = (ImageView) findViewById(R.id.back);
         style = (TextView) findViewById(R.id.style);
         startTimeLlyt = (LinearLayout) findViewById(R.id.start_time_llyt);
-        startTime = (TextView) findViewById(R.id.start_time);
+        startTimeTv = (TextView) findViewById(R.id.start_time);
         endTimeLlyt = (LinearLayout) findViewById(R.id.end_time_llyt);
-        endTime = (TextView) findViewById(R.id.end_time);
+        endTimeTv = (TextView) findViewById(R.id.end_time);
         submit = (LinearLayout) findViewById(R.id.submit);
 
         back.setOnClickListener(view -> finish());
@@ -90,8 +95,8 @@ public class FindMediaActivity extends Activity {
             findMedia.setProductName(getName().getText().toString());
             findMedia.setBelongIndustry(getIndustry().getText().toString());
             findMedia.setMediaWays(style.getText().toString());
-            findMedia.setPutTimeStart(startTime.getText().toString());
-            findMedia.setPutTimeEnd(endTime.getText().toString());
+            findMedia.setPutTimeStart(startTime);
+            findMedia.setPutTimeEnd(endTime);
             findMedia.setPutPosition(getArea().getText().toString());
             findMedia.setPutInformation(getIntroduction().getText().toString());
             findMedia.setPutBudget(getPrice().getText().toString());
@@ -138,26 +143,20 @@ public class FindMediaActivity extends Activity {
          * 自定义布局中，id为 optionspicker 或者 timepicker 的布局以及其子控件必须要有，否则会报空指针。
          * 具体可参考demo 里面的两个自定义layout布局。
          */
-        pvCustomOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
-            @Override
-            public void onOptionsSelect(int options1, int option2, int options3, View v) {
-                //返回的分别是三个级别的选中位置
-                String tx = cardItem.get(options1);
-                style.setText(tx);
-            }
+        pvCustomOptions = new OptionsPickerBuilder(this, (options1, option2, options3, v) -> {
+            //返回的分别是三个级别的选中位置
+            String tx = cardItem.get(options1);
+            style.setText(tx);
         })
-                .setLayoutRes(R.layout.pickerview_custom_options, new CustomListener() {
-                    @Override
-                    public void customLayout(View v) {
-                        final TextView tvSubmit = (TextView) v.findViewById(R.id.tv_finish);
-                        ImageView ivCancel = (ImageView) v.findViewById(R.id.iv_cancel);
-                        tvSubmit.setOnClickListener(v1 -> {
-                            pvCustomOptions.returnData();
-                            pvCustomOptions.dismiss();
-                        });
+                .setLayoutRes(R.layout.pickerview_custom_options, v -> {
+                    final TextView tvSubmit = v.findViewById(R.id.tv_finish);
+                    ImageView ivCancel = v.findViewById(R.id.iv_cancel);
+                    tvSubmit.setOnClickListener(v1 -> {
+                        pvCustomOptions.returnData();
+                        pvCustomOptions.dismiss();
+                    });
 
-                        ivCancel.setOnClickListener(v12 -> pvCustomOptions.dismiss());
-                    }
+                    ivCancel.setOnClickListener(v12 -> pvCustomOptions.dismiss());
                 })
                 .isDialog(true)
                 .build();
@@ -168,10 +167,13 @@ public class FindMediaActivity extends Activity {
     private void initTimePicker() {//Dialog 模式下，在底部弹出
 
         pvTime = new TimePickerBuilder(this, (date, v) -> {
-            if (isSetUpStartTime)
-                startTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
-            else
-                endTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+            if (isSetUpStartTime) {
+                startTime = DateUtils.dateToLong(date);
+                startTimeTv.setText(DateUtils.dateToString(date, DateUtils.TYPE_01));
+            } else {
+                endTime = DateUtils.dateToLong(date);
+                endTimeTv.setText(DateUtils.dateToString(date, DateUtils.TYPE_01));
+            }
         })
                 .setTimeSelectChangeListener(date -> Log.i("pvTime", "onTimeSelectChanged"))
                 .setLabel("年", "月", "日", " ：", " ：", "")//默认设置为年月日时分秒
@@ -209,22 +211,15 @@ public class FindMediaActivity extends Activity {
 
             @Override
             public void onNext(String s) {
-                if (!s.equals("success")) {
-//                    ToastUtils.show(FindMediaActivity.this, "");
-                    return;
-                }
                 ToastUtils.show(FindMediaActivity.this, "提交成功");
                 finish();
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e(FindMediaActivity.this.getLocalClassName(), e.getMessage()+" "
-                +e.getLocalizedMessage()
-                +" "+e.getCause()
-                +" "+ Arrays.toString(e.getStackTrace())
-
-                );
+                Log.e(getLocalClassName(), e.getMessage());
+                ToastUtils.show(FindMediaActivity.this, "提交成功");
+                finish();
             }
 
             @Override
