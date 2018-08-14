@@ -31,6 +31,7 @@ import com.zhaopai.android.Util.ToastUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import io.reactivex.Observer;
@@ -38,6 +39,7 @@ import io.reactivex.disposables.Disposable;
 
 public class FindMediaActivity extends Activity {
 
+    private ImageView back;
     private TextView style;
     private LinearLayout startTimeLlyt;
     private TextView startTime;
@@ -55,12 +57,15 @@ public class FindMediaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_media);
 
+        back = (ImageView) findViewById(R.id.back);
         style = (TextView) findViewById(R.id.style);
         startTimeLlyt = (LinearLayout) findViewById(R.id.start_time_llyt);
         startTime = (TextView) findViewById(R.id.start_time);
         endTimeLlyt = (LinearLayout) findViewById(R.id.end_time_llyt);
         endTime = (TextView) findViewById(R.id.end_time);
         submit = (LinearLayout) findViewById(R.id.submit);
+
+        back.setOnClickListener(view -> finish());
 
         //等数据加载完毕再初始化并显示Picker,以免还未加载完数据就显示,造成APP崩溃。
         getOptionData();
@@ -214,6 +219,12 @@ public class FindMediaActivity extends Activity {
 
             @Override
             public void onError(Throwable e) {
+                Log.e(FindMediaActivity.this.getLocalClassName(), e.getMessage()+" "
+                +e.getLocalizedMessage()
+                +" "+e.getCause()
+                +" "+ Arrays.toString(e.getStackTrace())
+
+                );
             }
 
             @Override

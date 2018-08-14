@@ -80,11 +80,11 @@ public class MeFragment extends Fragment {
         getUserData(user_id);
 
         myMedia.setOnClickListener(view1 -> startActivity(
-                new Intent(getActivity(), BaseMediaListActivity.class)
-                        .putExtra("title", "我的媒体")));
+                new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的媒体")));
+        myLive.setOnClickListener(view1 -> startActivity(
+                new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的监控")));
         myEnroll.setOnClickListener(view1 -> startActivity(
-                new Intent(getActivity(), BaseMediaListActivity.class)
-                        .putExtra("title", "我的报备")));
+                new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的报备")));
 
     }
 

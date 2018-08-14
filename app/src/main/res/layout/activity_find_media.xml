@@ -11,6 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="46dp">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:scaleType="center"
+            android:src="@mipmap/back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,6 +73,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@color/white"
                         android:hint="@string/add_project_name"
+                        android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:inputType="text" />
@@ -102,6 +111,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@color/white"
                         android:hint="@string/input_industry"
+                        android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -269,6 +279,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@color/white"
                         android:hint="@string/input_area"
+                        android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:inputType="text" />
@@ -304,9 +315,10 @@
                         android:layout_marginRight="20dp"
                         android:background="@color/white"
                         android:hint="@string/input_price"
+                        android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp"
-                        android:inputType="text" />
+                        android:inputType="numberDecimal" />
                 </LinearLayout>
 
                 <View
@@ -348,6 +360,7 @@
                         android:background="@color/white"
                         android:gravity="top"
                         android:hint="@string/input_info"
+                        android:textColor="@color/black"
                         android:paddingTop="2dp"
                         android:textSize="14sp"
                         android:inputType="text" />

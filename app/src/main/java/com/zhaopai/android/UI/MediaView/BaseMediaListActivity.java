@@ -38,9 +38,10 @@ public class BaseMediaListActivity extends Activity {
         feature = (TextView) findViewById(R.id.feature);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
+
+        back.setOnClickListener(view -> finish());
         if (getIntent().getStringExtra("title") != null)
             title.setText(getIntent().getStringExtra("title"));
-
         if (getIntent().getStringExtra("feature") != null)
             title.setText(getIntent().getStringExtra("feature"));
 
@@ -69,6 +70,29 @@ public class BaseMediaListActivity extends Activity {
 
         switch (type) {
             case "我的媒体":
+                HttpData.getInstance().HttpDataGetMyMedia(new Observer<List<Media>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<Media> media) {
+                        mLatestRecommendationAdapter.addData(media);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }, user_id);
+                break;
+            case "我的监控":
                 HttpData.getInstance().HttpDataGetMyMedia(new Observer<List<Media>>() {
                     @Override
                     public void onSubscribe(Disposable d) {

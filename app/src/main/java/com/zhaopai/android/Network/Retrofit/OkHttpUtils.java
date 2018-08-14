@@ -1,13 +1,20 @@
 package com.zhaopai.android.Network.Retrofit;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import com.zhaopai.android.BuildConfig;
 import com.zhaopai.android.Constant.Data;
+import com.zhaopai.android.Constant.NetConstants;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * okHttp的配置
@@ -31,6 +38,8 @@ public class OkHttpUtils {
             mOkHttpClient = new OkHttpClient.Builder()
                     //添加拦截器
                     .addInterceptor(mTokenInterceptor)
+                    //添加日志拦截器
+                    .addNetworkInterceptor(mHttpLoggingInterceptor)
                     //添加网络连接器
                     //设置请求读写的超时时间
                     .connectTimeout(30, TimeUnit.SECONDS)
@@ -80,4 +89,40 @@ public class OkHttpUtils {
 
         return mNoTokenOkHttpClient;
     }
+
+
+    /**
+     * 日志拦截器
+     */
+    private static final Interceptor mHttpLoggingInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
+
+    /**
+     *
+     */
+    private static final Interceptor configInterceptor = chain -> {
+        Request.Builder builder = chain.request().newBuilder();
+
+        // add costom headers......
+
+        if (chain.request().headers().get(NetConstants.ADD_COOKIE) != null) {
+            Log.e("000 ", NetConstants.ADD_COOKIE + "");
+            builder.removeHeader(NetConstants.ADD_COOKIE);
+//            if (!TextUtils.isEmpty(Data.getSession())) { //Session管理
+//                builder.header("Cookie", Data.getSession());
+//            }
+        }
+
+        Request request = builder.build();
+        if (BuildConfig.DEBUG) {
+            Log.d("TAG", "request url : " + request.url());
+            Log.d("TAG", "request headers : " + request.headers());
+            Log.d("TAG", "request method : " + request.method());
+            Log.d("TAG", "request body : " + request.body());
+            Log.d("TAG", "request cacheControl : " + request.cacheControl());
+            Log.d("TAG", "request isHttps : " + request.isHttps());
+            Log.d("TAG", "request newBuilder : " + request.newBuilder());
+            Log.d("TAG", "request tag : " + request.tag());
+        }
+        return chain.proceed(request);
+    };
 }
