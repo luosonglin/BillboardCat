@@ -62,6 +62,8 @@ public class MediaDetailActivity extends AppCompatActivity {
     NestedScrollView scrollView;
     @BindView(R.id.toolbar_haha)
     RelativeLayout toolbarHaha;
+    @BindView(R.id.toolbar_name)
+    TextView toolbarName;
 
     private long id;
     RequestOptions options = new RequestOptions()
@@ -69,6 +71,7 @@ public class MediaDetailActivity extends AppCompatActivity {
 //            .transform(new GlideCircleTransform(this))
             .diskCacheStrategy(DiskCacheStrategy.ALL);
     private int height;
+    private String mediaName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,14 +85,16 @@ public class MediaDetailActivity extends AppCompatActivity {
             this.finish();
         }
 
-        initScrollCiew();
 
         getData(id);
 
+        initScrollCiew();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void initScrollCiew() {
+        toolbarName.setVisibility(View.INVISIBLE);
+        name.setVisibility(View.VISIBLE);
         toolbarHaha.setBackgroundColor(Color.TRANSPARENT);
 
 //        height = image.getHeight();
@@ -101,13 +106,21 @@ public class MediaDetailActivity extends AppCompatActivity {
                 if (y <= height) {
                     float scale = (float) y / height;
                     float alpha = (255 * scale);
-			        Log.i("TAG","alpha--->"+alpha);
-			        Log.i("TAG","y--->"+y);
-			        Log.i("TAG","height--->"+height);
+                    Log.i("TAG", "alpha--->" + alpha);
+                    Log.i("TAG", "y--->" + y);
+                    Log.i("TAG", "height--->" + height);
 
                     //只是layout背景透明(仿知乎滑动效果)
                     toolbarHaha.setBackgroundColor(Color.argb((int) alpha, 0xff, 0xff, 0xff));
+                }
 
+
+                if ( y > 600) {
+                    toolbarName.setVisibility(View.VISIBLE);
+                    name.setVisibility(View.INVISIBLE);
+                } else {
+                    toolbarName.setVisibility(View.INVISIBLE);
+                    name.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -127,6 +140,8 @@ public class MediaDetailActivity extends AppCompatActivity {
                         .apply(options)
                         .into(image);
                 name.setText(media.getName());
+                toolbarName.setText(media.getName());
+
                 status.setText(media.getIsUse() == 0 ? "立即可上" : "已使用");
                 money.setText(media.getPrice());
                 style.setText(media.getStyle());

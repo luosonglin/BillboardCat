@@ -304,6 +304,15 @@
                 android:src="@mipmap/back"
                 android:contentDescription="TODO" />
 
+            <TextView
+                android:id="@+id/toolbar_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:layout_centerInParent="true"/>
+
             <ImageView
                 android:id="@+id/share"
                 android:layout_width="50dp"
