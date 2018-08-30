@@ -1,20 +1,25 @@
 package com.zhaopai.android.UI.MediaView;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.Util.ToastUtils;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -53,12 +58,17 @@ public class MediaDetailActivity extends AppCompatActivity {
     TextView secretary;
     @BindView(R.id.broker)
     TextView broker;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
+    @BindView(R.id.toolbar_haha)
+    RelativeLayout toolbarHaha;
 
     private long id;
     RequestOptions options = new RequestOptions()
             .centerCrop()
 //            .transform(new GlideCircleTransform(this))
             .diskCacheStrategy(DiskCacheStrategy.ALL);
+    private int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +82,35 @@ public class MediaDetailActivity extends AppCompatActivity {
             this.finish();
         }
 
+        initScrollCiew();
+
         getData(id);
 
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void initScrollCiew() {
+        toolbarHaha.setBackgroundColor(Color.TRANSPARENT);
+
+//        height = image.getHeight();
+        height = 240;
+
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View view, int x, int y, int oldx, int oldy) {
+                if (y <= height) {
+                    float scale = (float) y / height;
+                    float alpha = (255 * scale);
+			        Log.i("TAG","alpha--->"+alpha);
+			        Log.i("TAG","y--->"+y);
+			        Log.i("TAG","height--->"+height);
+
+                    //只是layout背景透明(仿知乎滑动效果)
+                    toolbarHaha.setBackgroundColor(Color.argb((int) alpha, 0xff, 0xff, 0xff));
+
+                }
+            }
+        });
     }
 
     private void getData(long id) {

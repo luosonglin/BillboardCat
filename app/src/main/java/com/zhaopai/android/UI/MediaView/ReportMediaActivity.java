@@ -34,10 +34,13 @@ import io.reactivex.disposables.Disposable;
 
 public class ReportMediaActivity extends Activity {
 
+    private ImageView back;
     private LinearLayout startTimeLlyt;
-    private TextView startTime;
+    private TextView startTimeTv;
+    private long startTime;
     private LinearLayout endTimeLlyt;
-    private TextView endTime;
+    private TextView endTimeTv;
+    private long endTime;
     private LinearLayout submit;
 
     private TimePickerView pvTime;
@@ -48,11 +51,14 @@ public class ReportMediaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_media);
 
+        back = (ImageView) findViewById(R.id.back);
         startTimeLlyt = (LinearLayout) findViewById(R.id.start_time_llyt);
-        startTime = (TextView) findViewById(R.id.start_time);
+        startTimeTv = (TextView) findViewById(R.id.start_time);
         endTimeLlyt = (LinearLayout) findViewById(R.id.end_time_llyt);
-        endTime = (TextView) findViewById(R.id.end_time);
+        endTimeTv = (TextView) findViewById(R.id.end_time);
         submit = (LinearLayout) findViewById(R.id.submit);
+
+        back.setOnClickListener(view -> finish());
 
         initTimePicker();
         startTimeLlyt.setOnClickListener(view -> {
@@ -69,23 +75,23 @@ public class ReportMediaActivity extends Activity {
             reportMedia.setMediaName(getName().getText().toString());
             reportMedia.setBelongIndustry(getIndustry().getText().toString());
             reportMedia.setCustomerName(getCustomer().getText().toString());
-            reportMedia.setPutTimeStart(startTime.getText().toString());
-            reportMedia.setPutTimeEnd(endTime.getText().toString());
+            reportMedia.setPutTimeStart(DateUtils.formatDate(startTime, DateUtils.TYPE_07));
+            reportMedia.setPutTimeEnd(DateUtils.formatDate(endTime, DateUtils.TYPE_07));
             reportMedia.setAlarmTime(DateUtils.formatDate(System.currentTimeMillis(), DateUtils.TYPE_01));
             reportMedia.setUserId(3);//?????
             submitReportMedia(reportMedia);
         });
     }
 
-    private EditText getName(){
+    private EditText getName() {
         return (EditText) findViewById(R.id.name);
     }
 
-    private EditText getIndustry(){
+    private EditText getIndustry() {
         return (EditText) findViewById(R.id.industry);
     }
 
-    private EditText getPrice(){
+    private EditText getPrice() {
         return (EditText) findViewById(R.id.price);
     }
 
@@ -93,19 +99,21 @@ public class ReportMediaActivity extends Activity {
         return (EditText) findViewById(R.id.customer);
     }
 
-    private EditText getIntroduction(){
+    private EditText getIntroduction() {
         return (EditText) findViewById(R.id.introduction);
     }
-
 
 
     private void initTimePicker() {//Dialog 模式下，在底部弹出
 
         pvTime = new TimePickerBuilder(this, (date, v) -> {
-            if (isSetUpStartTime)
-                startTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
-            else
-                endTime.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+            if (isSetUpStartTime) {
+                startTime = DateUtils.dateToLong(date);
+                startTimeTv.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+            } else {
+                endTime = DateUtils.dateToLong(date);
+                endTimeTv.setText(DateUtils.dateToString(date, DateUtils.TYPE_05));
+            }
         })
                 .setTimeSelectChangeListener(date -> Log.i("pvTime", "onTimeSelectChanged"))
                 .setLabel("年", "月", "日", " ：", " ：", "")//默认设置为年月日时分秒

@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="46dp">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:scaleType="center"
+            android:src="@mipmap/back" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -107,51 +114,6 @@
                         android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="20dp"
-                    android:background="#EBEBEB" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:background="@color/white"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        android:layout_marginStart="20dp"
-                        android:text="@string/media_style"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/style"
-                        android:layout_width="150dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="40dp"
-                        android:layout_weight="3"
-                        android:hint="@string/choose_one_media_style"
-                        android:maxLines="1"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_weight="1"
-                        android:src="@mipmap/turn_left"
-                        tools:ignore="ContentDescription" />
                 </LinearLayout>
 
                 <View

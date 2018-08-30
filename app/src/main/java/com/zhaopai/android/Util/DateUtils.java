@@ -19,6 +19,7 @@ public class DateUtils {
     public static final String TYPE_04 = "yyyy年MM月dd日";
     public static final String TYPE_05 = "yyyy年MM月dd日 HH:mm:ss";
     public static final String TYPE_06 = "yyyy.MM.dd";
+    public static final String TYPE_07 = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
     public DateUtils() {
     }
