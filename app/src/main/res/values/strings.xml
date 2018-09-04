@@ -29,11 +29,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_media">寻找媒体</string>
     <string name="project_name">项目名称</string>
-    <string name="add_project_name">添加一个项目或产品名称</string>
+    <string name="add_project_name">请输入具体的项目或产品名称</string>
     <string name="industry">所属行业</string>
     <string name="input_industry">请输入所属行业</string>
     <string name="media_style">媒体形式</string>
-    <string name="choose_one_media_style">请选择1个媒体形式</string>
+    <string name="choose_one_media_style">请选择媒体形式</string>
     <string name="begin_time">投放始于</string>
     <string name="set_up_begin_time">设置开始时间</string>
     <string name="end_time">投放止于</string>
@@ -42,7 +42,7 @@
     <string name="input_area">请填写投放区域</string>
     <string name="price">投放预算</string>
     <string name="input_price">请填写投放预算</string>
-    <string name="info">投放信息</string>
+    <string name="info">附加要求</string>
     <string name="input_info">请输入投放详情信息</string>
     <string name="submit">提交</string>
     <string name="report_media">媒体报备</string>

@@ -257,6 +257,7 @@
                                 android:src="@mipmap/my_wallet_icon"
                                 tools:ignore="ContentDescription" />
 
+                            <!--可能报备别人的媒体-->
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

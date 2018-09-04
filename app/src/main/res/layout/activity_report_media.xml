@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/white"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -39,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <View
@@ -79,42 +79,42 @@
                         android:inputType="text" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="20dp"
-                    android:background="#EBEBEB" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:background="#EBEBEB" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="42dp"
-                    android:background="@color/white"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:orientation="horizontal">
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="42dp"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:focusable="true"-->
+                    <!--android:focusableInTouchMode="true"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="20dp"
-                        android:text="@string/industry"
-                        android:textColor="#666666" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginStart="20dp"-->
+                        <!--android:text="@string/industry"-->
+                        <!--android:textColor="#666666" />-->
 
-                    <EditText
-                        android:id="@+id/industry"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@color/white"
-                        android:hint="@string/input_industry"
-                        android:textColor="@color/black"
-                        android:maxLines="1"
-                        android:textSize="14sp" />
-                </LinearLayout>
+                    <!--<EditText-->
+                        <!--android:id="@+id/industry"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginRight="20dp"-->
+                        <!--android:background="@color/white"-->
+                        <!--android:hint="@string/input_industry"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textSize="14sp" />-->
+                <!--</LinearLayout>-->
 
                 <View
                     android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="20dp"
-                        android:text="@string/price"
+                        android:text="投放城市"
                         android:textColor="#666666" />
 
                     <EditText
@@ -257,11 +257,12 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="20dp"
-                        android:text="@string/customer_name"
+                        android:text="投放区域"
                         android:textColor="#666666" />
+                    <!--CBD，步行街之类的-->
 
                     <EditText
-                        android:id="@+id/customer"
+                        android:id="@+id/area"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
@@ -269,12 +270,48 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:background="@color/white"
-                        android:hint="@string/input_customer_name"
+                        android:hint="@string/input_price"
                         android:textColor="@color/black"
                         android:maxLines="1"
                         android:textSize="14sp"
                         android:inputType="text" />
                 </LinearLayout>
+
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginStart="20dp"-->
+                    <!--android:background="#EBEBEB" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="36dp"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginStart="20dp"-->
+                        <!--android:text="@string/customer_name"-->
+                        <!--android:textColor="#666666" />-->
+
+                    <!--<EditText-->
+                        <!--android:id="@+id/customer"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginRight="20dp"-->
+                        <!--android:background="@color/white"-->
+                        <!--android:hint="@string/input_customer_name"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:maxLines="1"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:inputType="text" />-->
+                <!--</LinearLayout>-->
 
                 <View
                     android:layout_width="match_parent"
@@ -293,7 +330,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="20dp"
-                        android:text="@string/info"
+                        android:text="投放详情"
                         android:textColor="#666666" />
                 </LinearLayout>
 
@@ -328,7 +365,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/skyblue"
+            android:background="#a7d7cd"
             android:orientation="vertical">
 
             <TextView
@@ -336,7 +373,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/submit"
-                android:textColor="@color/white" />
+                android:textColor="#ffffff" />
         </LinearLayout>
 
     </RelativeLayout>

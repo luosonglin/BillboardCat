@@ -73,8 +73,6 @@ public class ReportMediaActivity extends Activity {
         submit.setOnClickListener(view -> {
             ReportMedia reportMedia = new ReportMedia();
             reportMedia.setMediaName(getName().getText().toString());
-            reportMedia.setBelongIndustry(getIndustry().getText().toString());
-            reportMedia.setCustomerName(getCustomer().getText().toString());
             reportMedia.setPutTimeStart(DateUtils.formatDate(startTime, DateUtils.TYPE_07));
             reportMedia.setPutTimeEnd(DateUtils.formatDate(endTime, DateUtils.TYPE_07));
             reportMedia.setAlarmTime(DateUtils.formatDate(System.currentTimeMillis(), DateUtils.TYPE_01));
@@ -87,16 +85,8 @@ public class ReportMediaActivity extends Activity {
         return (EditText) findViewById(R.id.name);
     }
 
-    private EditText getIndustry() {
-        return (EditText) findViewById(R.id.industry);
-    }
-
     private EditText getPrice() {
         return (EditText) findViewById(R.id.price);
-    }
-
-    private EditText getCustomer() {
-        return (EditText) findViewById(R.id.customer);
     }
 
     private EditText getIntroduction() {

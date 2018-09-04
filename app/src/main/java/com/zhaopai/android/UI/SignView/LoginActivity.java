@@ -128,6 +128,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        // 用户体系
+        // 黄金会员：能看档期
+        // 铂金会员：能看刊例价
         mSignUpView = (TextView) findViewById(R.id.sign_up_tv);
         mSignUpView.setOnClickListener(new OnClickListener() {
             @Override

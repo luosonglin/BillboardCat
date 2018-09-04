@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:background="#ffffff"
         android:layout_marginBottom="48dp">
 
         <android.support.v4.widget.NestedScrollView
@@ -132,8 +133,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="16dp"
                         android:gravity="center"
                         android:text="规格"
                         android:textColor="@color/grey"
@@ -153,15 +154,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="3dp"
                     android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center"
+                        android:text="区域"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:text="商务区，行政区，商业区，公路等"
+                        android:textColor="@color/grey"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="16dp"
                         android:gravity="center"
                         android:text="流量"
                         android:textColor="@color/grey"
@@ -190,14 +219,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -209,7 +238,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="22dp"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginStart="6dp"
                             android:text="位置"
                             android:textColor="@color/grey"
                             android:textSize="18sp" />
@@ -250,14 +279,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -269,7 +298,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="6dp"
+                            android:layout_marginStart="6dp"
                             android:text="简介"
                             android:textColor="@color/grey"
                             android:textSize="18sp" />

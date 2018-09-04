@@ -115,7 +115,7 @@ public class MediaDetailActivity extends AppCompatActivity {
                 }
 
 
-                if ( y > 600) {
+                if ( y > 780) {
                     toolbarName.setVisibility(View.VISIBLE);
                     name.setVisibility(View.INVISIBLE);
                 } else {

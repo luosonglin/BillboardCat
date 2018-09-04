@@ -29,5 +29,4 @@
             layout="@layout/bottom_tabs"/>
     </RelativeLayout>
 
-
 </android.support.constraint.ConstraintLayout>

@@ -23,12 +23,11 @@ import java.util.List;
 import com.zhaopai.android.Base.BaseQuickAdapter;
 import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.Media;
-import com.zhaopai.android.Network.Entity.ReportMedia;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.SelectedMediaAdapter;
-import com.zhaopai.android.UI.MediaView.FindMediaActivity;
+import com.zhaopai.android.UI.MediaView.FindMedia.FindMediaActivity;
 import com.zhaopai.android.UI.MediaView.ReportMediaActivity;
 import com.zhaopai.android.Util.GlideImageLoader;
 import com.zhaopai.android.Util.ToastUtils;
@@ -96,7 +95,7 @@ public class IndexFragment extends Fragment {
 
         //设置布局管理器
 //        mRecyclerView2.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView2.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+        mRecyclerView2.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         //如果Item高度固定  增加该属性能够提高效率
         mRecyclerView2.setHasFixedSize(true);
         //禁止RecyclerView的嵌套滑动特性
@@ -179,9 +178,9 @@ public class IndexFragment extends Fragment {
                 bannerImages.add(banner.getImg4());
                 if (bannerImages != null) {
                     mBanner.setImages(bannerImages)
-                            .setBannerStyle(BannerConfig.CIRCLE_INDICATOR)
+                            .setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE)
                             .setIndicatorGravity(BannerConfig.RIGHT)
-                            .setBannerAnimation(Transformer.Default)
+                            .setBannerAnimation(Transformer.Tablet)
                             .setImageLoader(new GlideImageLoader())
                             .start();
                 }

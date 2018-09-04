@@ -1,6 +1,7 @@
 package com.zhaopai.android;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.zhaopai.android.UI.IndexView.IndexFragment;
 import com.zhaopai.android.UI.IndexView.MeFragment;
 import com.zhaopai.android.UI.IndexView.MediaFragment;
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initStatusBar();
+//        initStatusBar();
+//        StatusBarUtil.setColor(MainActivity.this, Color.WHITE);
+        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
 
         //默认第一项选中
         mFragmentManager = getSupportFragmentManager();
@@ -95,13 +99,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    //版本 大于等于19  才会生效
-    private void initStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
-    }
+//    //版本 大于等于19  才会生效
+//    private void initStatusBar() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+//        }
+//    }
 
     @OnClick({R.id.tab_index, R.id.tab_room, R.id.tab_message, R.id.tab_mine})
     public void onClick(View view) {

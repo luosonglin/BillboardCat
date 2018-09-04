@@ -43,7 +43,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.MediaView.MediaDetailActivity"></activity>
-        <activity android:name=".UI.MediaView.FindMediaActivity"></activity>
+        <activity android:name=".UI.MediaView.FindMedia.FindMediaActivity"></activity>
         <activity android:name=".UI.MediaView.ReportMediaActivity"></activity>
         <activity android:name=".UI.MediaView.BaseMediaListActivity"></activity>
     </application>

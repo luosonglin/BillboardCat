@@ -1,26 +1,24 @@
-package com.zhaopai.android.UI.MediaView;
+package com.zhaopai.android.UI.MediaView.FindMedia;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
-import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.listener.CustomListener;
-import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
-import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.zhaopai.android.Network.Entity.FindMedia;
@@ -29,20 +27,13 @@ import com.zhaopai.android.R;
 import com.zhaopai.android.Util.DateUtils;
 import com.zhaopai.android.Util.ToastUtils;
 
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Locale;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class FindMediaActivity extends Activity {
+public class SelfFindMediaFragment extends Fragment {
 
-    private ImageView back;
     private TextView style;
     private LinearLayout startTimeLlyt;
     private TextView startTimeTv;
@@ -57,40 +48,55 @@ public class FindMediaActivity extends Activity {
     private OptionsPickerView pvCustomOptions;
     private ArrayList<String> cardItem = new ArrayList<>();
 
+    public SelfFindMediaFragment() {
+        // Required empty public constructor
+    }
+
+    // TODO: Rename and change types and number of parameters
+    public static SelfFindMediaFragment newInstance() {
+        SelfFindMediaFragment fragment = new SelfFindMediaFragment();
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_media);
+    }
 
-        back = (ImageView) findViewById(R.id.back);
-        style = (TextView) findViewById(R.id.style);
-        startTimeLlyt = (LinearLayout) findViewById(R.id.start_time_llyt);
-        startTimeTv = (TextView) findViewById(R.id.start_time);
-        endTimeLlyt = (LinearLayout) findViewById(R.id.end_time_llyt);
-        endTimeTv = (TextView) findViewById(R.id.end_time);
-        submit = (LinearLayout) findViewById(R.id.submit);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_self_find_media, container, false);
 
-        back.setOnClickListener(view -> finish());
+
+        style = (TextView) view.findViewById(R.id.style);
+        startTimeLlyt = (LinearLayout) view.findViewById(R.id.start_time_llyt);
+        startTimeTv = (TextView) view.findViewById(R.id.start_time);
+        endTimeLlyt = (LinearLayout) view.findViewById(R.id.end_time_llyt);
+        endTimeTv = (TextView) view.findViewById(R.id.end_time);
+        submit = (LinearLayout) view.findViewById(R.id.submit);
+
 
         //等数据加载完毕再初始化并显示Picker,以免还未加载完数据就显示,造成APP崩溃。
         getOptionData();
         initCustomOptionPicker();
-        style.setOnClickListener(view -> {
+        style.setOnClickListener(view1 -> {
             pvCustomOptions.show(); //弹出自定义条件选择器
         });
 
 
         initTimePicker();
-        startTimeLlyt.setOnClickListener(view -> {
+        startTimeLlyt.setOnClickListener(view1 -> {
             isSetUpStartTime = true;
             pvTime.show(view);//弹出时间选择器，传递参数过去，回调的时候则可以绑定此view
         });
-        endTimeLlyt.setOnClickListener(view -> {
+        endTimeLlyt.setOnClickListener(view1 -> {
             isSetUpStartTime = false;
             pvTime.show(view);
         });
 
-        submit.setOnClickListener(view -> {
+        submit.setOnClickListener(view1 -> {
             FindMedia findMedia = new FindMedia();
             findMedia.setProductName(getName().getText().toString());
             findMedia.setBelongIndustry(getIndustry().getText().toString());
@@ -104,26 +110,38 @@ public class FindMediaActivity extends Activity {
             findMedia.setUserId(3);//?????
             submitFindMedia(findMedia);
         });
+
+        return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
     }
 
     private EditText getName() {
-        return (EditText) findViewById(R.id.name);
+        return (EditText) getActivity().findViewById(R.id.name);
     }
 
     private EditText getIndustry() {
-        return (EditText) findViewById(R.id.industry);
+        return (EditText) getActivity().findViewById(R.id.industry);
     }
 
     private EditText getArea() {
-        return (EditText) findViewById(R.id.area);
+        return (EditText) getActivity().findViewById(R.id.area);
     }
 
     private EditText getPrice() {
-        return (EditText) findViewById(R.id.price);
+        return (EditText) getActivity().findViewById(R.id.price);
     }
 
     private EditText getIntroduction() {
-        return (EditText) findViewById(R.id.introduction);
+        return (EditText) getActivity().findViewById(R.id.introduction);
     }
 
     private void getOptionData() {
@@ -143,7 +161,7 @@ public class FindMediaActivity extends Activity {
          * 自定义布局中，id为 optionspicker 或者 timepicker 的布局以及其子控件必须要有，否则会报空指针。
          * 具体可参考demo 里面的两个自定义layout布局。
          */
-        pvCustomOptions = new OptionsPickerBuilder(this, (options1, option2, options3, v) -> {
+        pvCustomOptions = new OptionsPickerBuilder(getActivity(), (options1, option2, options3, v) -> {
             //返回的分别是三个级别的选中位置
             String tx = cardItem.get(options1);
             style.setText(tx);
@@ -166,7 +184,7 @@ public class FindMediaActivity extends Activity {
 
     private void initTimePicker() {//Dialog 模式下，在底部弹出
 
-        pvTime = new TimePickerBuilder(this, (date, v) -> {
+        pvTime = new TimePickerBuilder(getActivity(), (date, v) -> {
             if (isSetUpStartTime) {
                 startTime = DateUtils.dateToLong(date);
                 startTimeTv.setText(DateUtils.dateToString(date, DateUtils.TYPE_01));
@@ -211,15 +229,15 @@ public class FindMediaActivity extends Activity {
 
             @Override
             public void onNext(String s) {
-                ToastUtils.show(FindMediaActivity.this, "提交成功");
-                finish();
+                ToastUtils.show(getActivity(), "提交成功");
+                getActivity().finish();
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.e(getLocalClassName(), e.getMessage());
-                ToastUtils.show(FindMediaActivity.this, "提交成功");
-                finish();
+                Log.e(getActivity().getLocalClassName(), e.getMessage());
+                ToastUtils.show(getActivity(), "提交成功");
+                getActivity().finish();
             }
 
             @Override
@@ -228,5 +246,4 @@ public class FindMediaActivity extends Activity {
             }
         }, findMedia);
     }
-
 }
