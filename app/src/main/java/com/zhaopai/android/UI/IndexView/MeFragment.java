@@ -97,20 +97,20 @@ public class MeFragment extends Fragment {
             @Override
             public void onNext(User user) {
                 name.setText(user.getName().trim());
-                switch (user.getGroupid()) {
-                    case 1:
-                        type.setText("游客");
-                        break;
-                    case 2:
-                        type.setText("广告主");
-                        break;
-                    case 3:
-                        type.setText("媒体主");
-                        break;
-                    case 4:
-                        type.setText("代理商");
-                        break;
-                }
+//                switch (user.getGroupid()) {
+//                    case 1:
+//                        type.setText("游客");
+//                        break;
+//                    case 2:
+//                        type.setText("广告主");
+//                        break;
+//                    case 3:
+//                        type.setText("媒体主");
+//                        break;
+//                    case 4:
+//                        type.setText("代理商");
+//                        break;
+//                }
                 Glide.with(getActivity())
                         .load(user.getAvatar())
                         .apply(new RequestOptions()

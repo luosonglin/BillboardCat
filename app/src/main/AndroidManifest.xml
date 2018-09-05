@@ -33,8 +33,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <!--android:theme="@style/AppTheme">-->
-        <activity android:name=".MainActivity"
+
+        <!-- android:theme="@style/AppTheme"> -->
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/WelcomeTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,10 +44,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.MediaView.MediaDetailActivity"></activity>
-        <activity android:name=".UI.MediaView.FindMedia.FindMediaActivity"></activity>
-        <activity android:name=".UI.MediaView.ReportMediaActivity"></activity>
-        <activity android:name=".UI.MediaView.BaseMediaListActivity"></activity>
+        <activity android:name=".UI.MediaView.MediaDetailActivity" />
+        <activity android:name=".UI.MediaView.FindMedia.FindMediaActivity" />
+        <activity android:name=".UI.MediaView.ReportMediaActivity" />
+        <activity android:name=".UI.MediaView.BaseMediaListActivity" />
+        <activity
+            android:name=".UI.MediaView.Monitor.MonitorActivity"
+            android:label=""
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

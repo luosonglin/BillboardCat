@@ -53,11 +53,11 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation 'com.facebook.rebound:rebound:0.3.8'
-    compile 'com.github.VictorAlbertos.RxCache:core:1.4.6'
-    compile 'com.youth.banner:banner:1.4.4'
+    implementation 'com.github.VictorAlbertos.RxCache:core:1.4.6'
+    implementation 'com.youth.banner:banner:1.4.4'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
 
-    compile 'com.jaeger.statusbarutil:library:1.5.1'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 }
