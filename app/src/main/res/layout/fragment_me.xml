@@ -38,29 +38,29 @@
                         android:layout_centerHorizontal="true"
                         android:text="未登录"
                         android:textColor="@color/black"
-                        android:textSize="34sp" />
+                        android:textSize="30sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
                             android:src="@mipmap/member" />
 
                         <TextView
                             android:id="@+id/type"
                             android:layout_width="wrap_content"
-                            android:layout_height="28dp"
+                            android:layout_height="22dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="6dp"
-                            android:background="@mipmap/identity_bg2"
                             android:gravity="center"
                             android:text="享受大客户专属私人服务"
                             android:textColor="#a7d7cd"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:visibility="visible" />
                     </LinearLayout>
                 </LinearLayout>
@@ -79,7 +79,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="18dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -200,7 +200,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="28dp"
                     android:src="@mipmap/my_collect"
                     tools:ignore="ContentDescription" />
 
@@ -230,7 +230,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="28dp"
                     android:src="@mipmap/my_setting"
                     tools:ignore="ContentDescription" />
 
@@ -260,7 +260,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="28dp"
                     android:src="@mipmap/my_info"
                     tools:ignore="ContentDescription" />
 

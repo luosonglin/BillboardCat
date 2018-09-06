@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/item_index_latest_recommandation_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPadding="0dp">
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:delay_time="20000"
+            app:image_scale_type="fit_xy"
+            app:indicator_height="6dp"
+            app:indicator_margin="1.5dp"
+            app:indicator_width="6dp"
+            app:indicator_drawable_selected="@drawable/banner_selected"
+            app:indicator_drawable_unselected="@drawable/banner_unselected"
+            />
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/recommendation_name"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginStart="3dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:text="城投控股大厦"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
+
+</LinearLayout>

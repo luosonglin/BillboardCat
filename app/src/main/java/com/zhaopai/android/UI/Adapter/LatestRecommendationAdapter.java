@@ -30,7 +30,7 @@ public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
         Glide.with(mContext)
-                .load(item.getImgLive())
+                .load(item.getImgLive())//+"?imageView2/2/h/90"
                 .apply(options)
                 .into((ImageView) helper.getView(R.id.recommendation_iv));
 

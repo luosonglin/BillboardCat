@@ -25,6 +25,7 @@ import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
+import com.zhaopai.android.UI.Adapter.BigPicMediaAdapter;
 import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.SelectedMediaAdapter;
 import com.zhaopai.android.UI.MediaView.FindMedia.FindMediaActivity;
@@ -32,6 +33,7 @@ import com.zhaopai.android.UI.MediaView.Monitor.MonitorActivity;
 import com.zhaopai.android.UI.MediaView.ReportMediaActivity;
 import com.zhaopai.android.Util.GlideImageLoader;
 import com.zhaopai.android.Util.ToastUtils;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -44,12 +46,14 @@ public class IndexFragment extends Fragment {
     private LinearLayout mediaBackup;
     private RecyclerView mRecyclerView;
     private RecyclerView mRecyclerView2;
+    private RecyclerView mRecyclerView3;
 
     private com.youth.banner.Banner mBanner;
     private List<String> bannerImages = new ArrayList<>();
 
     private SelectedMediaAdapter mSelectedMediaAdapter;
     private LatestRecommendationAdapter mLatestRecommendationAdapter;
+    private BigPicMediaAdapter mBigPicMediaAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class IndexFragment extends Fragment {
         mediaBackup = (LinearLayout) view.findViewById(R.id.media_backup);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView2 = (RecyclerView) view.findViewById(R.id.rv_list2);
+        mRecyclerView3 = (RecyclerView) view.findViewById(R.id.rv_list3);
 
         getBannerData(banner);
 
@@ -111,6 +116,49 @@ public class IndexFragment extends Fragment {
         //将适配器添加到RecyclerView
         mRecyclerView2.setAdapter(mLatestRecommendationAdapter);
         getIndexMediaData();
+
+        //设置布局管理器
+//        mRecyclerView3.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView3.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        //如果Item高度固定  增加该属性能够提高效率
+        mRecyclerView3.setHasFixedSize(true);
+        //禁止RecyclerView的嵌套滑动特性
+        mRecyclerView3.setNestedScrollingEnabled(false);
+        // Constant data
+        mBigPicMediaAdapter = new BigPicMediaAdapter(R.layout.item_big_media, null);
+        //设置加载动画
+        //设置是否自动加载以及加载个数
+        mBigPicMediaAdapter.openLoadMore(6, true);
+        //将适配器添加到RecyclerView
+        mRecyclerView3.setAdapter(mBigPicMediaAdapter);
+        gethahaMediaData();
+    }
+
+    private void gethahaMediaData() {
+        HttpData.getInstance().HttpDataGetSelectedMedias(new Observer<List<Media>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Media> media) {
+                mBigPicMediaAdapter.addData(media);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.e(getActivity().getLocalClassName(), "onError: " + e.getMessage()
+                        + "\n" + e.getCause()
+                        + "\n" + e.getLocalizedMessage()
+                        + "\n" + Arrays.toString(e.getStackTrace()));
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
     private void getIndexMediaData() {
