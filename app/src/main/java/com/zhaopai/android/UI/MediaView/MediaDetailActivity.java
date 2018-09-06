@@ -1,6 +1,7 @@
 package com.zhaopai.android.UI.MediaView;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +17,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.jaeger.library.StatusBarUtil;
+import com.zhaopai.android.MainActivity;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
@@ -84,11 +88,19 @@ public class MediaDetailActivity extends AppCompatActivity {
             ToastUtils.show(this, "媒体ID不能为空");
             this.finish();
         }
-
+        changeColor(MediaDetailActivity.this, Color.WHITE);
 
         getData(id);
 
         initScrollCiew();
+    }
+
+    public static void changeColor(Activity paramActivity, int paramInt1) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            paramActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            paramActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            paramActivity.getWindow().setStatusBarColor(paramInt1);
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)

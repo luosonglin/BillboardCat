@@ -1,5 +1,6 @@
 package com.zhaopai.android;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -83,9 +84,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        changeColor(MainActivity.this, Color.WHITE);
 //        initStatusBar();
 //        StatusBarUtil.setColor(MainActivity.this, Color.WHITE);
-        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
+//        StatusBarUtil.setTranslucentForImageViewInFragment(MainActivity.this, null);
 
         //默认第一项选中
         mFragmentManager = getSupportFragmentManager();
@@ -99,13 +101,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-//    //版本 大于等于19  才会生效
-//    private void initStatusBar() {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-//        }
-//    }
+
+    public static void changeColor(Activity paramActivity, int paramInt1) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            paramActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            paramActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            paramActivity.getWindow().setStatusBarColor(paramInt1);
+//            paramActivity.getWindow().setTitleColor(Color.BLACK);
+            paramActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+
 
     @OnClick({R.id.tab_index, R.id.tab_room, R.id.tab_message, R.id.tab_mine})
     public void onClick(View view) {
