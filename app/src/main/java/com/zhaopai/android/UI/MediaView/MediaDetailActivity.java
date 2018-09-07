@@ -58,8 +58,6 @@ public class MediaDetailActivity extends AppCompatActivity {
     TextView description;
     @BindView(R.id.collect_iv)
     ImageView collectIv;
-    @BindView(R.id.secretary)
-    TextView secretary;
     @BindView(R.id.broker)
     TextView broker;
     @BindView(R.id.scrollView)
@@ -100,6 +98,8 @@ public class MediaDetailActivity extends AppCompatActivity {
             paramActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             paramActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             paramActivity.getWindow().setStatusBarColor(paramInt1);
+            paramActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
         }
     }
 
@@ -112,28 +112,25 @@ public class MediaDetailActivity extends AppCompatActivity {
 //        height = image.getHeight();
         height = 240;
 
-        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View view, int x, int y, int oldx, int oldy) {
-                if (y <= height) {
-                    float scale = (float) y / height;
-                    float alpha = (255 * scale);
-                    Log.i("TAG", "alpha--->" + alpha);
-                    Log.i("TAG", "y--->" + y);
-                    Log.i("TAG", "height--->" + height);
+        scrollView.setOnScrollChangeListener((View.OnScrollChangeListener) (view, x, y, oldx, oldy) -> {
+            if (y <= height) {
+                float scale = (float) y / height;
+                float alpha = (255 * scale);
+                Log.i("TAG", "alpha--->" + alpha);
+                Log.i("TAG", "y--->" + y);
+                Log.i("TAG", "height--->" + height);
 
-                    //只是layout背景透明(仿知乎滑动效果)
-                    toolbarHaha.setBackgroundColor(Color.argb((int) alpha, 0xff, 0xff, 0xff));
-                }
+                //只是layout背景透明(仿知乎滑动效果)
+                toolbarHaha.setBackgroundColor(Color.argb((int) alpha, 0xff, 0xff, 0xff));
+            }
 
 
-                if ( y > 780) {
-                    toolbarName.setVisibility(View.VISIBLE);
-                    name.setVisibility(View.INVISIBLE);
-                } else {
-                    toolbarName.setVisibility(View.INVISIBLE);
-                    name.setVisibility(View.VISIBLE);
-                }
+            if ( y > 780) {
+                toolbarName.setVisibility(View.VISIBLE);
+                name.setVisibility(View.INVISIBLE);
+            } else {
+                toolbarName.setVisibility(View.INVISIBLE);
+                name.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -179,7 +176,7 @@ public class MediaDetailActivity extends AppCompatActivity {
         }, id);
     }
 
-    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.secretary, R.id.broker})
+    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.broker})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image:
@@ -190,8 +187,6 @@ public class MediaDetailActivity extends AppCompatActivity {
             case R.id.share:
                 break;
             case R.id.collect_iv:
-                break;
-            case R.id.secretary:
                 break;
             case R.id.broker:
 

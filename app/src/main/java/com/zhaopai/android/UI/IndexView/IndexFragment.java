@@ -127,6 +127,7 @@ public class IndexFragment extends Fragment {
         // Constant data
         mBigPicMediaAdapter = new BigPicMediaAdapter(R.layout.item_big_media, null);
         //设置加载动画
+        mBigPicMediaAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
         //设置是否自动加载以及加载个数
         mBigPicMediaAdapter.openLoadMore(6, true);
         //将适配器添加到RecyclerView
