@@ -1,6 +1,7 @@
 package com.zhaopai.android.UI.IndexView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,7 +24,9 @@ import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.MediaAdapter;
+import com.zhaopai.android.UI.MediaView.MediaDetailActivity;
 import com.zhaopai.android.Util.RecycleViewDivider;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -145,6 +148,11 @@ public class MediaFragment extends Fragment {
             @Override
             public void onNext(List<Media> media) {
                 mMediaAdapter.addData(media);
+                mMediaAdapter.setOnRecyclerViewItemClickListener((view, position) -> {
+                    Intent intent = new Intent(getActivity(), MediaDetailActivity.class);
+                    intent.putExtra("id", media.get(position).getId());
+                    startActivity(intent);
+                });
             }
 
             @Override

@@ -1,8 +1,10 @@
 package com.zhaopai.android.UI.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -11,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import com.youth.banner.Banner;
 import com.zhaopai.android.Base.BaseQuickAdapter;
 import com.zhaopai.android.Base.BaseViewHolder;
 import com.zhaopai.android.Network.Entity.Media;
@@ -26,6 +29,8 @@ public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
 
     @Override
     protected void convert(BaseViewHolder helper, final Media item) {
+
+        autoSizeBannerHeight(mContext, ((ImageView) helper.getView(R.id.recommendation_iv)));
         RequestOptions options = new RequestOptions()
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL);
@@ -45,5 +50,22 @@ public class LatestRecommendationAdapter extends BaseQuickAdapter<Media> {
                 mContext.startActivity(intent);
             }
         });
+    }
+
+
+    /**
+     * 根据宽度自动调整(参照图片本身尺寸)高度<br/>
+     * 需要开启 android:adjustViewBounds="true"
+     */
+    private void autoSizeBannerHeight(Context context, ImageView view) {
+
+        int imageViewWidth = (context.getResources().getDisplayMetrics().widthPixels - 24) / 2;
+
+        ViewGroup.LayoutParams lp = view.getLayoutParams();
+        lp.width = imageViewWidth;
+        lp.height = imageViewWidth / 4 * 3;//ViewGroup.LayoutParams.WRAP_CONTENT;
+        view.setLayoutParams(lp);
+
+        Log.e(TAG, view.getWidth()+" * "+view.getHeight());
     }
 }
