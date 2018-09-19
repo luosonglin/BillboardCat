@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vondear.rxtool.RxTool;
 import com.zhaopai.android.Util.Foreground;
 
 /**
@@ -47,7 +48,8 @@ public class BaseApplication extends Application {
         context = getApplicationContext();
         instance = this;
 
-
+        // 初始化工具类
+        RxTool.init(this);
     }
 
     /**

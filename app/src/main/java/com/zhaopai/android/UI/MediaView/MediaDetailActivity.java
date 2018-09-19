@@ -68,8 +68,8 @@ public class MediaDetailActivity extends AppCompatActivity {
     TextView description;
     @BindView(R.id.collect_iv)
     ImageView collectIv;
-    @BindView(R.id.broker)
-    TextView broker;
+    @BindView(R.id.report)
+    TextView report;
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
     @BindView(R.id.toolbar_haha)
@@ -142,7 +142,6 @@ public class MediaDetailActivity extends AppCompatActivity {
                 toolbarHaha.setBackgroundColor(Color.argb((int) alpha, 0xff, 0xff, 0xff));
             }
 
-
             if (y > 780) {
                 toolbarName.setVisibility(View.VISIBLE);
                 name.setVisibility(View.INVISIBLE);
@@ -200,7 +199,7 @@ public class MediaDetailActivity extends AppCompatActivity {
         }, id);
     }
 
-    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.broker})
+    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.report})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image:
@@ -212,7 +211,7 @@ public class MediaDetailActivity extends AppCompatActivity {
                 break;
             case R.id.collect_iv:
                 break;
-            case R.id.broker:
+            case R.id.report:
 
                 break;
         }

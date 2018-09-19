@@ -60,4 +60,13 @@ dependencies {
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
 
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
+    //基础工具库
+    implementation "com.github.vondear.RxTool:RxKit:v2.0.4"
+    //UI库
+    implementation "com.github.vondear.RxTool:RxUI:v2.0.4"
+    //功能库（Zxing扫描与生成二维码条形码 支付宝 微信）
+    implementation "com.github.vondear.RxTool:RxFeature:v2.0.4"
+    //ArcGis For Android工具库（API：100.1以上版本）
+    implementation "com.github.vondear.RxTool:RxArcGisKit:v2.0.4"
 }
