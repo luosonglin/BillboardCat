@@ -30,6 +30,11 @@
                     android:scaleType="fitXY"
                     android:src="@mipmap/ic_launcher" />
 
+                <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+                    android:id="@+id/detail_player"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp" />
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
@@ -397,4 +402,5 @@
         android:background="#00000000"
         android:scaleType="centerCrop"
         android:visibility="invisible" />
+
 </RelativeLayout>

@@ -13,6 +13,8 @@ android {
 
         //此处解决Android Studio 3.0 butterknife:7.0.1配置问题
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -69,4 +71,7 @@ dependencies {
     implementation "com.github.vondear.RxTool:RxFeature:v2.0.4"
     //ArcGis For Android工具库（API：100.1以上版本）
     implementation "com.github.vondear.RxTool:RxArcGisKit:v2.0.4"
+
+    //多功能的视频播放器
+    implementation 'com.shuyu:GSYVideoPlayer:6.0.0-beta'
 }
