@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.zhaopai.android.Base.BaseQuickAdapter;
+import com.zhaopai.android.MainActivity;
 import com.zhaopai.android.Network.Entity.Banner;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
@@ -71,6 +72,8 @@ public class IndexFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         search = (ImageView) view.findViewById(R.id.search);
+        search.setOnClickListener(view1 -> MainActivity.trunMediaView());
+
         banner = (com.youth.banner.Banner) view.findViewById(R.id.banner);
         findMedia = (LinearLayout) view.findViewById(R.id.find_media);
         mediaMonitor = (LinearLayout) view.findViewById(R.id.media_monitor);

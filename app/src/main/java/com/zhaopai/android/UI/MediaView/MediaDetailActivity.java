@@ -182,10 +182,9 @@ public class MediaDetailActivity extends AppCompatActivity {
                         .load(media.getImgLive())
                         .apply(options)
                         .into(image);
-                image.setOnClickListener(view -> {
-//                    initBigPicDialog(media.getImgLive());
-                    zoomImageFromThumb(image, media.getImgLive()); //R.mipmap.ic_launcher);
-                });
+//                image.setOnClickListener(view -> {
+//                    zoomImageFromThumb(image, media.getImgLive()); //R.mipmap.ic_launcher);
+//                });
 
 
                 name.setText(media.getName());
@@ -204,10 +203,13 @@ public class MediaDetailActivity extends AppCompatActivity {
                 description.setText(media.getData());
 
                 if (media.getUrl() == null || media.getUrl().equals("")) {
+                    toolbarHaha.setVisibility(View.VISIBLE);
+                    back.setOnClickListener(view -> finish());
                     image.setVisibility(View.VISIBLE);
                     detailPlayer.setVisibility(View.GONE);
                     return;
                 }
+                toolbarHaha.setVisibility(View.GONE);
                 image.setVisibility(View.GONE);
                 detailPlayer.setVisibility(View.VISIBLE);
 
@@ -219,20 +221,20 @@ public class MediaDetailActivity extends AppCompatActivity {
 
                 //增加title
                 detailPlayer.getTitleTextView().setVisibility(View.GONE);
-                detailPlayer.getBackButton().setVisibility(View.GONE);
+                detailPlayer.getBackButton().setVisibility(View.VISIBLE);
 
                 //外部辅助的旋转，帮助全屏
                 orientationUtils = new OrientationUtils(MediaDetailActivity.this, detailPlayer);
-//初始化不打开外部的旋转
+                //初始化不打开外部的旋转
                 orientationUtils.setEnable(false);
 
                 GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
                 gsyVideoOption.setThumbImageView(imageView)
                         .setIsTouchWiget(true)
-                        .setRotateViewAuto(false)
+                        .setRotateViewAuto(true)
                         .setLockLand(false)
                         .setAutoFullWithSize(true)
-                        .setShowFullAnimation(false)
+                        .setShowFullAnimation(true)
                         .setNeedLockFull(true)
                         .setUrl(media.getUrl())
                         .setCacheWithPlay(false)
@@ -262,7 +264,7 @@ public class MediaDetailActivity extends AppCompatActivity {
                             }
                         }).build(detailPlayer);
 
-                detailPlayer.getBackButton().setVisibility(View.GONE);
+                detailPlayer.getBackButton().setOnClickListener(view -> finish());
 
                 detailPlayer.getFullscreenButton().setOnClickListener(v -> {
                     //直接横屏

@@ -49,8 +49,7 @@ public class MainActivity extends AppCompatActivity
     ImageView tabRecommendImg;
     @BindView(R.id.tab_room_title)
     TextView tabRecommendTitle;
-    @BindView(R.id.tab_room)
-    LinearLayout tabRecommend;
+    static LinearLayout tabRecommend;
 
     @BindView(R.id.tab_message_img)
     ImageView tabRoomImg;
@@ -83,6 +82,9 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
+        tabRecommend = (LinearLayout) findViewById(R.id.tab_room);
 
         changeColor(MainActivity.this, Color.WHITE);
 //        initStatusBar();
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         int id = view.getId();
 
         int activeColorRecourse = getResources().getColor(R.color.black);
-        int inactiveColorRecourse = getResources().getColor(R.color.grey);
+        int inactiveColorRecourse = getResources().getColor(R.color.app_color);
 
         initSelection(inactiveColorRecourse);
         FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
@@ -147,7 +149,7 @@ public class MainActivity extends AppCompatActivity
                 // 先隐藏掉所有的Fragment，以防止有多个Fragment显示在界面上的情况
                 hideFragments(fragmentTransaction);
 
-                taBindViewexImg.setImageResource(R.mipmap.tab1_b);
+                taBindViewexImg.setImageResource(R.mipmap.tab_home_s);
                 taBindViewexTitle.setTextColor(activeColorRecourse);
                 if (mIndexFragment == null) {
                     // 如果Fragment为空，则创建一个并添加到界面上
@@ -162,7 +164,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.tab_room:
                 hideFragments(fragmentTransaction);
 
-                tabRecommendImg.setImageResource(R.mipmap.tab2_b);
+                tabRecommendImg.setImageResource(R.mipmap.tab_media_s);
                 tabRecommendTitle.setTextColor(activeColorRecourse);
                 if (mMediaFragment == null) {
                     mMediaFragment = new MediaFragment();
@@ -175,7 +177,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.tab_message:
                 hideFragments(fragmentTransaction);
 
-                tabRoomImg.setImageResource(R.mipmap.tab4_b);
+                tabRoomImg.setImageResource(R.mipmap.tab_info_s);
                 tabRoomTitle.setTextColor(activeColorRecourse);
                 if (mNewsFragment == null) {
                     mNewsFragment = new NewsFragment();
@@ -188,7 +190,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.tab_mine:
                 hideFragments(fragmentTransaction);
 
-                tabMineImg.setImageResource(R.mipmap.tab5_b);
+                tabMineImg.setImageResource(R.mipmap.tab_me_s);
                 tabMineTitle.setTextColor(activeColorRecourse);
                 if (mMeFragment == null) {
                     mMeFragment = new MeFragment();
@@ -206,16 +208,16 @@ public class MainActivity extends AppCompatActivity
      * 每次选中之前先清除上次的选中状态
      */
     public void initSelection(int inactiveResources) {
-        taBindViewexImg.setImageResource(R.mipmap.tab1_g);
+        taBindViewexImg.setImageResource(R.mipmap.tab_home);
         taBindViewexTitle.setTextColor(inactiveResources);
 
-        tabRecommendImg.setImageResource(R.mipmap.tab2_g);
+        tabRecommendImg.setImageResource(R.mipmap.tab_media);
         tabRecommendTitle.setTextColor(inactiveResources);
 
-        tabRoomImg.setImageResource(R.mipmap.tab4_g);
+        tabRoomImg.setImageResource(R.mipmap.tab_info);
         tabRoomTitle.setTextColor(inactiveResources);
 
-        tabMineImg.setImageResource(R.mipmap.tab5_g);
+        tabMineImg.setImageResource(R.mipmap.tab_me);
         tabMineTitle.setTextColor(inactiveResources);
     }
 
@@ -259,4 +261,10 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+    public static void trunMediaView() {
+        tabRecommend.performClick();
+    }
+
 }

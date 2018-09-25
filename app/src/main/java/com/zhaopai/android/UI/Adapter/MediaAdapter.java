@@ -1,5 +1,9 @@
 package com.zhaopai.android.UI.Adapter;
 
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +19,8 @@ import com.zhaopai.android.R;
 
 public class MediaAdapter extends BaseQuickAdapter<Media> {
 
+    public String key;
+
     public MediaAdapter(int layoutResId, List<Media> data) {
         super(layoutResId, data);
     }
@@ -29,9 +35,27 @@ public class MediaAdapter extends BaseQuickAdapter<Media> {
                 .apply(options)
                 .into((ImageView) helper.getView(R.id.image));
 
-        helper.setText(R.id.name, item.getName())
-                .setText(R.id.size, item.getSize())
+        helper.setText(R.id.size, item.getSize())
                 .setText(R.id.style, item.getStyle())
                 .setText(R.id.flow, item.getFlow());
+
+        helper.setText(R.id.name, changeColor(item.getName(), key));
+    }
+
+    private SpannableString changeColor(String word, String key) {
+        SpannableString spannableString = new SpannableString(word);
+        if (key == null || !word.contains(key)) return spannableString;
+
+        int location = word.indexOf(key);
+        spannableString.setSpan(new ForegroundColorSpan(
+                Color.parseColor("#FF0000")),
+                location,
+                location + key.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return spannableString;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

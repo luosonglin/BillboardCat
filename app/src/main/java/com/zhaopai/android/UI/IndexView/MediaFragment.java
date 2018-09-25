@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -196,10 +197,13 @@ public class MediaFragment extends Fragment {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.map_image, R.id.district_rlyt, R.id.area_rlyt, R.id.day_rent_rlyt})
+    @OnClick({R.id.map_image, R.id.search, R.id.district_rlyt, R.id.area_rlyt, R.id.day_rent_rlyt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.map_image:
+                break;
+            case R.id.search:
+                Search(searchEdit.getText().toString().trim());
                 break;
             case R.id.district_rlyt:
                 break;
@@ -223,5 +227,35 @@ public class MediaFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void Search(String word) {
+        HttpData.getInstance().HttpDateSearchMedia(new Observer<List<Media>>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(List<Media> media) {
+                mMediaAdapter.setKey(word);
+                mMediaAdapter.setNewData(media);
+
+                // 隐藏键盘
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchEdit.getWindowToken(), 0);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        }, word);
     }
 }

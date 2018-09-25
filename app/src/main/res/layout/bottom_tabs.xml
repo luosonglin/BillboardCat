@@ -16,7 +16,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="2dp"
-            android:src="@mipmap/tab1_b" />
+            android:src="@mipmap/tab_home_s" />
 
         <TextView
             android:id="@+id/tab_index_title"
@@ -36,7 +36,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="2dp"
-            android:src="@mipmap/tab2_g" />
+            android:src="@mipmap/tab_media" />
 
         <TextView
             android:id="@+id/tab_room_title"
@@ -54,7 +54,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="2dp"
-            android:src="@mipmap/tab4_g" />
+            android:src="@mipmap/tab_info" />
 
         <TextView
             android:id="@+id/tab_message_title"
@@ -71,7 +71,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="2dp"
-            android:src="@mipmap/tab5_g" />
+            android:src="@mipmap/tab_me" />
 
         <TextView
             android:id="@+id/tab_mine_title"

@@ -114,6 +114,12 @@ public class HttpData extends RetrofitUtils {
         setSubscribe(observable, observer);
     }
 
+    public void HttpDateSearchMedia(Observer<List<Media>> observer, String wd) {
+        Observable observable = service.search(wd);
+        setSubscribe(observable, observer);
+    }
+
+
     /**
      * 插入观察者
      *

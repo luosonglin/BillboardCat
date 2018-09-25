@@ -156,4 +156,8 @@
     <color name="grey2_transparent">#b1808080</color><!--灰白色2 -->
     <color name="transparent">@android:color/transparent</color> <!-- 透明色 -->
 
+    <color name="app_color">#a7d7cd</color>
+
+
+
 </resources>

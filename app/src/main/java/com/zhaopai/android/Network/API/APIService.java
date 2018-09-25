@@ -60,4 +60,7 @@ public interface APIService {
     @GET("/BillboardCat_backend/v1/media/my/{id}")
     Observable<List<Media>> getMyMedia(@Path("id") long id);
 
+    @GET("/BillboardCat_backend/v1/media/query={wd}")
+    Observable<List<Media>> search(@Path("wd") String wd);
+
 }

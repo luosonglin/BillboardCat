@@ -28,7 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_launcher"
+                    android:visibility="gone"/>
 
                 <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
                     android:id="@+id/detail_player"
@@ -50,7 +51,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_marginTop="26dp">
+                    android:layout_marginTop="20dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -104,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -122,7 +123,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"
-                        android:text="形式形式形式形式形式形式形式形式形式形式形式形式形式形式形式"
+                        android:text="式形式形式形式形式形式"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -132,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -150,7 +151,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"
-                        android:text="形式形式形式形式形式形式形式形式形式形式形式形式形式形式形式"
+                        android:text="形式形式形式形式形式形式形式形式形式"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -160,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -188,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="2dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -206,7 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="left|center_vertical"
-                        android:text="形式形式形式形式形式形式形式形式形式形式形式形式形式形式形式"
+                        android:text="形式形式形式形式形式"
                         android:textColor="@color/grey"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -382,6 +383,18 @@
             android:layout_alignParentTop="true"
             android:background="@color/grey1" />
 
+        <TextView
+            android:id="@+id/report2"
+            android:layout_width="136dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/report"
+            android:layout_marginEnd="1dp"
+            android:background="#a7d7cd"
+            android:gravity="center"
+            android:text="媒体预留"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/report"
             android:layout_width="136dp"
