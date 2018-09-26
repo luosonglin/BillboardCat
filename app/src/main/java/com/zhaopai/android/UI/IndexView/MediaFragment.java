@@ -240,6 +240,11 @@ public class MediaFragment extends Fragment {
             public void onNext(List<Media> media) {
                 mMediaAdapter.setKey(word);
                 mMediaAdapter.setNewData(media);
+                mMediaAdapter.setOnRecyclerViewItemClickListener((view, position) -> {
+                    Intent intent = new Intent(getActivity(), MediaDetailActivity.class);
+                    intent.putExtra("id", media.get(position).getId());
+                    startActivity(intent);
+                });
 
                 // 隐藏键盘
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(

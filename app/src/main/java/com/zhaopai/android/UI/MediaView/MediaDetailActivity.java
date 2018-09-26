@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -21,6 +22,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,6 +49,8 @@ import com.shuyu.gsyvideoplayer.utils.Debuger;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+import com.vondear.rxtool.RxBarTool;
+import com.vondear.rxtool.RxTextTool;
 import com.vondear.rxui.view.dialog.RxDialog;
 import com.vondear.rxui.view.dialog.RxDialogScaleView;
 import com.zhaopai.android.MainActivity;
@@ -197,7 +201,11 @@ public class MediaDetailActivity extends AppCompatActivity {
                 toolbarName.setText(media.getName());
 
                 status.setText(media.getIsUse() == 0 ? "立即可上" : "已使用");
-                money.setText(media.getPrice());
+//                money.setText(media.getPrice());
+                RxTextTool.getBuilder("").setAlign(Layout.Alignment.ALIGN_CENTER)
+                        .append(media.getPrice()).setBlur(6, BlurMaskFilter.Blur.NORMAL)
+                        .into(money);
+
                 style.setText(media.getStyle());
                 size.setText(media.getSize());
                 flow.setText(media.getFlow());
@@ -225,30 +233,36 @@ public class MediaDetailActivity extends AppCompatActivity {
                 description.setText(media.getData());
 
                 if (media.getUrl() == null || media.getUrl().equals("")) {
-                    toolbarHaha.setVisibility(View.VISIBLE);
                     back.setOnClickListener(view -> finish());
                     image.setVisibility(View.VISIBLE);
                     detailPlayer.setVisibility(View.GONE);
 
-                    Glide.with(MediaDetailActivity.this)
+                    Glide.with(MediaDetailActivity.this).asBitmap()
                             .load(media.getImgLive())
-                            .apply(options)
-                            .into(image);
+                            .into(new SimpleTarget<Bitmap>() {
+                                @Override
+                                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                                    image.setImageBitmap(resource);
+                                    image.setOnClickListener(view -> {
+                                        RxDialogScaleView rxDialogScaleView = new RxDialogScaleView(MediaDetailActivity.this);
+                                        rxDialogScaleView.setImage(resource);
+                                        rxDialogScaleView.show();
+                                    });
+                                }
+                            });
                     return;
                 }
-                toolbarHaha.setVisibility(View.GONE);
                 image.setVisibility(View.GONE);
                 detailPlayer.setVisibility(View.VISIBLE);
 
                 //增加封面
                 ImageView imageView = new ImageView(MediaDetailActivity.this);
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                imageView.setImageResource(R.mipmap.ic_launcher);
                 new DownloadImageTaskUtil(imageView).execute(media.getImgLive());
 
                 //增加title
                 detailPlayer.getTitleTextView().setVisibility(View.GONE);
-                detailPlayer.getBackButton().setVisibility(View.VISIBLE);
+                detailPlayer.getBackButton().setVisibility(View.GONE);
 
                 //外部辅助的旋转，帮助全屏
                 orientationUtils = new OrientationUtils(MediaDetailActivity.this, detailPlayer);
@@ -290,8 +304,6 @@ public class MediaDetailActivity extends AppCompatActivity {
                                 orientationUtils.setEnable(!lock);
                             }
                         }).build(detailPlayer);
-
-                detailPlayer.getBackButton().setOnClickListener(view -> finish());
 
                 detailPlayer.getFullscreenButton().setOnClickListener(v -> {
                     //直接横屏
