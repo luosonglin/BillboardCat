@@ -44,7 +44,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.MediaView.MediaDetailActivity" />
+        <activity android:name=".UI.MediaView.MediaDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".UI.MediaView.FindMedia.FindMediaActivity" />
         <activity android:name=".UI.MediaView.ReportMediaActivity" />
         <activity android:name=".UI.MediaView.BaseMediaListActivity" />
