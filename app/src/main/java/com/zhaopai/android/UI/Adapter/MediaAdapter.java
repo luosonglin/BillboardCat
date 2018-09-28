@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,12 @@ public class MediaAdapter extends BaseQuickAdapter<Media> {
                 .setText(R.id.flow, item.getFlow());
 
         helper.setText(R.id.name, changeColor(item.getName(), key));
+
+        if (item.getUrl() != null && !item.getUrl().equals("")) {
+            helper.getView(R.id.is_live).setVisibility(View.VISIBLE);
+        } else {
+            helper.getView(R.id.is_live).setVisibility(View.GONE);
+        }
     }
 
     private SpannableString changeColor(String word, String key) {

@@ -30,8 +30,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements
-        MediaFragment.OnFragmentInteractionListener,
-        NewsFragment.OnFragmentInteractionListener{
+        MediaFragment.OnFragmentInteractionListener {
 
     @BindView(R.id.container)
     FrameLayout container;

@@ -202,8 +202,10 @@ public class MediaDetailActivity extends AppCompatActivity {
 
                 status.setText(media.getIsUse() == 0 ? "立即可上" : "已使用");
 //                money.setText(media.getPrice());
-                RxTextTool.getBuilder("").setAlign(Layout.Alignment.ALIGN_CENTER)
-                        .append(media.getPrice()).setBlur(6, BlurMaskFilter.Blur.NORMAL)
+                RxTextTool.getBuilder("")
+                        .setAlign(Layout.Alignment.ALIGN_CENTER)
+                        .append(media.getPrice().substring(0, media.getPrice().length()-3))
+                        .setBlur(6, BlurMaskFilter.Blur.NORMAL)
                         .into(money);
 
                 style.setText(media.getStyle());
@@ -267,7 +269,7 @@ public class MediaDetailActivity extends AppCompatActivity {
                 //外部辅助的旋转，帮助全屏
                 orientationUtils = new OrientationUtils(MediaDetailActivity.this, detailPlayer);
                 //初始化不打开外部的旋转
-                orientationUtils.setEnable(false);
+                orientationUtils.setEnable(true);
 
                 GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
                 gsyVideoOption.setThumbImageView(imageView)

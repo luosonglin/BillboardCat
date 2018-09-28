@@ -81,6 +81,8 @@ public class MeFragment extends Fragment {
                 new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的媒体")));
         myLive.setOnClickListener(view1 -> startActivity(
                 new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的监控")));
+        myPutIn.setOnClickListener(view1 -> startActivity(
+                new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的投放")));
         myEnroll.setOnClickListener(view1 -> startActivity(
                 new Intent(getActivity(), BaseMediaListActivity.class).putExtra("title", "我的报备")));
 

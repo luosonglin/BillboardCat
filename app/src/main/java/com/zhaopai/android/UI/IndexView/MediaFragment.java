@@ -197,10 +197,18 @@ public class MediaFragment extends Fragment {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.map_image, R.id.search, R.id.district_rlyt, R.id.area_rlyt, R.id.day_rent_rlyt})
+    @OnClick({R.id.map_image, R.id.cancel, R.id.search, R.id.district_rlyt, R.id.area_rlyt, R.id.day_rent_rlyt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.map_image:
+                break;
+            case R.id.cancel:
+                searchEdit.setText("");
+                searchEdit.setHint("搜索媒体名称、位置、形式");
+                // 隐藏键盘
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(searchEdit.getWindowToken(), 0);
                 break;
             case R.id.search:
                 Search(searchEdit.getText().toString().trim());

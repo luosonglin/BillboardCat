@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BillboardCat</string>
+    <string name="app_name">找牌网</string>
 
     <!-- time -->
     <string name="time_yesterday">昨天</string>
