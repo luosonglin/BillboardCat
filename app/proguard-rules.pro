@@ -19,3 +19,37 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+#腾讯地图 2D sdk
+-keep class com.tencent.mapsdk.**{*;}
+-keep class com.tencent.tencentmap.**{*;}
+
+#腾讯地图 3D sdk
+-keep class com.tencent.tencentmap.**{*;}
+-keep class com.tencent.map.**{*;}
+-keep class com.tencent.beacontmap.**{*;}
+-keep class navsns.**{*;}
+-dontwarn com.qq.**
+-dontwarn com.tencent.beacon.**
+
+#腾讯地图检索sdk
+-keep class com.tencent.lbssearch.**{*;}
+-keepattributes Signature
+-dontwarn com.tencent.lbssearch.**
+
+#腾讯地图街景sdk
+#如果街景混淆报出类似"java.io.IOException: Can't read [*\TencentPanoramaSDKv1.1.0_15232.jar"
+#请参考http://bbs.map.qq.com/forum.php?mod=viewthread&tid=21098&extra=page=1&filter=typeid&typeid=95&typeid=95
+-keep class com.tencent.tencentmap.streetviewsdk.**{*;}
+
+
+##腾讯地图定位SDK
+-keepclassmembers class ** {
+    public void on*Event(...);
+}
+-keep class c.t.**{*;}
+-keep class com.tencent.map.geolocation.**{*;}
+-keep class com.tencent.tencentmap.lbssdk.service.**{*;}
+
+-dontwarn  org.eclipse.jdt.annotation.**
+-dontwarn  c.t.**

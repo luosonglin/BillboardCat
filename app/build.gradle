@@ -33,7 +33,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
@@ -74,4 +74,7 @@ dependencies {
 
     //多功能的视频播放器
     implementation 'com.shuyu:GSYVideoPlayer:6.0.0-beta'
+
+    //腾讯地图
+    compile 'com.tencent.map:tencent-map-vector-sdk:latest.release'
 }

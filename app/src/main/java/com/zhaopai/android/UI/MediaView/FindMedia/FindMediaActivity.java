@@ -25,6 +25,7 @@ import com.zhaopai.android.Base.IndexChildAdapter;
 import com.zhaopai.android.Network.Entity.FindMedia;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
+import com.zhaopai.android.Util.CustomScrollViewPager;
 import com.zhaopai.android.Util.DateUtils;
 import com.zhaopai.android.Util.ToastUtils;
 
@@ -37,7 +38,8 @@ public class FindMediaActivity extends FragmentActivity {
 
     private View rootView;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+//    private ViewPager viewPager;
+    private CustomScrollViewPager viewPager;
     private ImageView searchLiveBtn;
 
     @Override
@@ -46,7 +48,7 @@ public class FindMediaActivity extends FragmentActivity {
         setContentView(R.layout.activity_find_media);
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (CustomScrollViewPager) findViewById(R.id.viewpager);
 
         //为ViewPager设置高度
         ViewGroup.LayoutParams params = viewPager.getLayoutParams();
@@ -59,7 +61,7 @@ public class FindMediaActivity extends FragmentActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void setUpViewPager(ViewPager viewPager) {
+    private void setUpViewPager(CustomScrollViewPager viewPager) {
         //如果是在fragment中使用viewpager, 记得要用getChildFragmentManager, 否则你会发现fragment异常的生命周期.
         IndexChildAdapter mIndexChildAdapter = new IndexChildAdapter(this.getSupportFragmentManager());//.getSupportFragmentManager());//.getChildFragmentManager()
 
