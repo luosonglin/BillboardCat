@@ -48,5 +48,6 @@
     <string name="report_media">媒体报备</string>
     <string name="customer_name">客户名称</string>
     <string name="input_customer_name">请填写客户名称</string>
+    <string name="title_activity_map_detail">MapDetailActivity</string>
 
 </resources>

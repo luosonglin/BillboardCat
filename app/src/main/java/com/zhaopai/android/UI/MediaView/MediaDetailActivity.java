@@ -1,36 +1,26 @@
 package com.zhaopai.android.UI.MediaView;
 
 import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.NestedScrollView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -38,36 +28,26 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.jaeger.library.StatusBarUtil;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
-import com.shuyu.gsyvideoplayer.listener.LockClickListener;
 import com.shuyu.gsyvideoplayer.utils.Debuger;
-import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
-import com.vondear.rxtool.RxBarTool;
 import com.vondear.rxtool.RxTextTool;
-import com.vondear.rxui.view.dialog.RxDialog;
 import com.vondear.rxui.view.dialog.RxDialogScaleView;
-import com.zhaopai.android.MainActivity;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.Util.DownloadImageTaskUtil;
 import com.zhaopai.android.Util.ToastUtils;
 
-import java.io.File;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import retrofit2.http.Url;
 
 public class MediaDetailActivity extends AppCompatActivity {
 
@@ -234,6 +214,19 @@ public class MediaDetailActivity extends AppCompatActivity {
 
                 description.setText(media.getData());
 
+                findViewById(R.id.map).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (media.getLaitude() == 0 || media.getLongitude() ==0) {
+                            ToastUtils.show(MediaDetailActivity.this, "定位数据有误差，请联系运营人员");
+                            return;
+                        }
+                        Intent intent = new Intent(MediaDetailActivity.this, MapDetailActivity.class);
+                        intent.putExtra("media", media);
+                        startActivity(intent);
+                    }
+                });
+
                 if (media.getUrl() == null || media.getUrl().equals("")) {
                     back.setOnClickListener(view -> finish());
                     image.setVisibility(View.VISIBLE);
@@ -328,7 +321,7 @@ public class MediaDetailActivity extends AppCompatActivity {
         }, id);
     }
 
-    @OnClick({R.id.image, R.id.back, R.id.share, R.id.collect_iv, R.id.report})
+    @OnClick({R.id.image, R.id.back, R.id.share,  R.id.collect_iv, R.id.report})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.image:

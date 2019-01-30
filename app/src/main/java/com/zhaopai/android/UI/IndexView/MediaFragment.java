@@ -17,16 +17,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.zhaopai.android.Base.BaseQuickAdapter;
 import com.zhaopai.android.Network.Entity.Media;
 import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
-import com.zhaopai.android.UI.Adapter.LatestRecommendationAdapter;
 import com.zhaopai.android.UI.Adapter.MediaAdapter;
 import com.zhaopai.android.UI.MediaView.MediaDetailActivity;
 import com.zhaopai.android.Util.RecycleViewDivider;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -201,6 +200,14 @@ public class MediaFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.map_image:
+//                FragmentManager fm = getActivity().getFragmentManager();
+//                fm.beginTransaction()
+//                        //替换为TwoFragment
+//                        .replace(R.layout.fragment_artificial_find_media, new ArtificialFindMediaFragment())
+//                        .commit();
+
+
+
                 break;
             case R.id.cancel:
                 searchEdit.setText("");

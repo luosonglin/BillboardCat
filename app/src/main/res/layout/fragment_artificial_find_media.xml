@@ -6,8 +6,17 @@
     tools:context=".UI.MediaView.FindMedia.ArtificialFindMediaFragment">
 
     <com.tencent.tencentmap.mapsdk.maps.MapView
-    android:id="@+id/map"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/item_media"
+        android:id="@+id/media_info"
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
 
 </RelativeLayout>

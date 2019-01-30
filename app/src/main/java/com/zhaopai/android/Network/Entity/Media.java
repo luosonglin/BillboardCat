@@ -1,8 +1,9 @@
 package com.zhaopai.android.Network.Entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Media {
+public class Media implements Serializable {
 
 
     private long id;

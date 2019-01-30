@@ -52,7 +52,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.MediaView.MediaDetailActivity"
+        <activity
+            android:name=".UI.MediaView.MediaDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity android:name=".UI.MediaView.FindMedia.FindMediaActivity" />
@@ -65,7 +66,12 @@
 
         <meta-data
             android:name="TencentMapSDK"
-            android:value="E53BZ-ECR3F-W54JC-JRUE6-IMYQH-OSBEK"/>
+            android:value="E53BZ-ECR3F-W54JC-JRUE6-IMYQH-OSBEK" />
+
+        <activity
+            android:name=".UI.MediaView.MapDetailActivity"
+            android:label="@string/title_activity_map_detail"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

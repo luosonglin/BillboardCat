@@ -1,38 +1,19 @@
 package com.zhaopai.android.UI.MediaView.FindMedia;
 
-import android.app.Dialog;
-import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.LinearLayout;
 
-import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
-import com.bigkoo.pickerview.builder.TimePickerBuilder;
-import com.bigkoo.pickerview.view.OptionsPickerView;
-import com.bigkoo.pickerview.view.TimePickerView;
 import com.zhaopai.android.Base.IndexChildAdapter;
-import com.zhaopai.android.Network.Entity.FindMedia;
-import com.zhaopai.android.Network.HttpData.HttpData;
 import com.zhaopai.android.R;
 import com.zhaopai.android.Util.CustomScrollViewPager;
-import com.zhaopai.android.Util.DateUtils;
-import com.zhaopai.android.Util.ToastUtils;
-
-import java.util.ArrayList;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 public class FindMediaActivity extends FragmentActivity {
 
@@ -47,6 +28,8 @@ public class FindMediaActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_media);
 
+        changeColor(FindMediaActivity.this, Color.WHITE);
+
         tabLayout = (TabLayout) findViewById(R.id.tablayout);
         viewPager = (CustomScrollViewPager) findViewById(R.id.viewpager);
 
@@ -59,6 +42,16 @@ public class FindMediaActivity extends FragmentActivity {
         setUpViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_FIXED); //tabLayout
         tabLayout.setupWithViewPager(viewPager);
+    }
+
+    public static void changeColor(Activity paramActivity, int paramInt1) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            paramActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            paramActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            paramActivity.getWindow().setStatusBarColor(paramInt1);
+            paramActivity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+
+        }
     }
 
     private void setUpViewPager(CustomScrollViewPager viewPager) {
